@@ -42,6 +42,16 @@ Defaults to current directory.`,
     describe: `Target OS ("unix" or "windows"), used to determine path delimiters.
 Defaults to current OS.`,
   },
+  'path-filter': {
+    string: true,
+    requiresArg: true,
+    describe: 'Validate that the path matches a regular expression',
+  },
+  'filename-filter': {
+    string: true,
+    requiresArg: true,
+    describe: 'Validate that the filename matches a regular expression',
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH
