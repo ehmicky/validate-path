@@ -30,6 +30,11 @@ Defaults to current directory.`,
     alias: 'i',
     describe: 'Validate that the path is inside of its base directory.',
   },
+  lowercase: {
+    boolean: true,
+    alias: 'l',
+    describe: 'Validate that the path is lowercase',
+  },
   platform: {
     string: true,
     alias: 'p',

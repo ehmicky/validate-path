@@ -9,6 +9,7 @@ const { validateInside } = require('./inside')
 const { resolveBase } = require('./base')
 const { normalizePlatform } = require('./platform')
 const { stripSlash } = require('./slash')
+const { validateLowerCase } = require('./lowercase')
 
 // eslint-disable-next-line max-statements
 const validatePath = function(path, opts) {
@@ -26,6 +27,7 @@ const validatePath = function(path, opts) {
   validateInside(pathD, optsA)
   const pathE = normalizePlatform(pathD, optsA)
   const pathF = stripSlash(pathE)
+  validateLowerCase(pathF, optsA)
   return pathF
 }
 
