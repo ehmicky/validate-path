@@ -2,7 +2,7 @@
 
 const { exit } = require('process')
 
-const getNodeVersions = require('../main')
+const validatePath = require('../main')
 
 const { defineCli } = require('./top')
 const { parseConfig } = require('./parse')
@@ -11,10 +11,10 @@ const { parseConfig } = require('./parse')
 const runCli = function() {
   try {
     const yargs = defineCli()
-    const config = parseConfig({ yargs })
-    const versions = getNodeVersions(config)
+    const { path, ...config } = parseConfig({ yargs })
+    const pathA = validatePath(path, config)
     // eslint-disable-next-line no-console, no-restricted-globals
-    console.log(versions.join('\n'))
+    console.log(pathA)
   } catch (error) {
     runCliHandler(error)
   }
