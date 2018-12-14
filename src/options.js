@@ -1,5 +1,7 @@
 'use strict'
 
+const { cwd } = require('process')
+
 const { validate } = require('jest-validate')
 
 const { omitBy } = require('./utils')
@@ -13,7 +15,9 @@ const getOptions = function({ opts = {} }) {
   return optsB
 }
 
-const DEFAULT_OPTS = {}
+const DEFAULT_OPTS = {
+  base: cwd(),
+}
 
 const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,

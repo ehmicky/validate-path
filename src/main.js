@@ -5,6 +5,7 @@ const { getOptions } = require('./options')
 const { addDefault } = require('./default')
 const { normalizeType } = require('./type')
 const { normalizeFileUrl } = require('./url')
+const { resolveBase } = require('./base')
 
 const validatePath = function(path, opts) {
   const optsA = getOptions({ opts })
@@ -17,7 +18,8 @@ const validatePath = function(path, opts) {
 
   const pathB = normalizeType(pathA)
   const pathC = normalizeFileUrl(pathB)
-  return pathC
+  const pathD = resolveBase(pathC, optsA)
+  return pathD
 }
 
 module.exports = validatePath

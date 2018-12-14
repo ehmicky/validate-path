@@ -18,6 +18,11 @@ const CONFIG = {
     alias: 'd',
     describe: 'Path default value',
   },
+  base: {
+    string: true,
+    alias: 'b',
+    describe: 'Base directory to resolve relative paths',
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH
