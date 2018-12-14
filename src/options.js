@@ -1,10 +1,10 @@
 'use strict'
 
-const { cwd } = require('process')
-
 const { validate } = require('jest-validate')
 
 const { omitBy } = require('./utils')
+const { getDefaultBase } = require('./base')
+const { getDefaultPlatform } = require('./platform')
 
 // Validate options and assign default options
 const getOptions = function({ opts = {} }) {
@@ -16,7 +16,8 @@ const getOptions = function({ opts = {} }) {
 }
 
 const DEFAULT_OPTS = {
-  base: cwd(),
+  base: getDefaultBase(),
+  platform: getDefaultPlatform(),
 }
 
 const EXAMPLE_OPTS = {

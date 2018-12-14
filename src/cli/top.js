@@ -21,7 +21,16 @@ const CONFIG = {
   base: {
     string: true,
     alias: 'b',
-    describe: 'Base directory to resolve relative paths',
+    requiresArg: true,
+    describe: `Base directory to resolve relative paths.
+Defaults to current directory.`,
+  },
+  platform: {
+    string: true,
+    alias: 'p',
+    requiresArg: true,
+    describe: `Target OS ("unix" or "windows"), used to determine path delimiters.
+Defaults to current OS.`,
   },
 }
 
