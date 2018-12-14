@@ -25,6 +25,11 @@ const CONFIG = {
     describe: `Base directory to resolve relative paths.
 Defaults to current directory.`,
   },
+  inside: {
+    boolean: true,
+    alias: 'i',
+    describe: 'Validate that the path is inside of its base directory.',
+  },
   platform: {
     string: true,
     alias: 'p',

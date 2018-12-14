@@ -5,6 +5,7 @@ const { getOptions } = require('./options')
 const { addDefault } = require('./default')
 const { normalizeType } = require('./type')
 const { normalizeFileUrl } = require('./url')
+const { validateInside } = require('./inside')
 const { resolveBase } = require('./base')
 const { normalizePlatform } = require('./platform')
 
@@ -20,6 +21,7 @@ const validatePath = function(path, opts) {
   const pathB = normalizeType(pathA)
   const pathC = normalizeFileUrl(pathB)
   const pathD = resolveBase(pathC, optsA)
+  validateInside(pathD, optsA)
   const pathE = normalizePlatform(pathD, optsA)
   return pathE
 }

@@ -23,6 +23,7 @@ const DEFAULT_OPTS = {
 const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,
   defaultValue: '/home/user/exampleDir/',
+  inside: true,
 }
 
 module.exports = {
