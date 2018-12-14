@@ -8,7 +8,9 @@ const { normalizeFileUrl } = require('./url')
 const { validateInside } = require('./inside')
 const { resolveBase } = require('./base')
 const { normalizePlatform } = require('./platform')
+const { stripSlash } = require('./slash')
 
+// eslint-disable-next-line max-statements
 const validatePath = function(path, opts) {
   const optsA = getOptions({ opts })
 
@@ -23,7 +25,8 @@ const validatePath = function(path, opts) {
   const pathD = resolveBase(pathC, optsA)
   validateInside(pathD, optsA)
   const pathE = normalizePlatform(pathD, optsA)
-  return pathE
+  const pathF = stripSlash(pathE)
+  return pathF
 }
 
 module.exports = validatePath
