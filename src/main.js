@@ -1,4 +1,3 @@
-// eslint-disable-next-line filenames/match-exported
 'use strict'
 
 const { getOptions } = require('./options')
@@ -22,33 +21,48 @@ const { followSymlink } = require('./symlink')
 const validatePath = async function(path, opts) {
   const optsA = getOptions({ opts })
 
-  const pathA = normalize(path, optsA)
+  const pathA = check(path, optsA)
 
   if (pathA === undefined) {
     return
   }
 
-  doCheck(pathA, optsA)
-
   const stat = await getStat(pathA)
 
-  await doValidate(pathA, stat, optsA)
+  await doValidators(pathA, stat, optsA)
 
   const pathB = await followSymlink(pathA, stat, optsA)
   return pathB
 }
 
-const normalize = function(path, opts) {
+const checkPath = function(path, opts) {
+  const optsA = getOptions({ opts })
+  const pathA = check(path, optsA)
+  return pathA
+}
+
+const check = function(path, opts) {
   const pathA = addDefault(path, opts)
 
   if (pathA === undefined) {
     return
   }
 
-  return NORMALIZE.reduce((pathB, normalizer) => normalizer(pathB, opts), pathA)
+  const pathB = normalize(pathA, opts)
+
+  doCheckers(pathB, opts)
+
+  return pathB
 }
 
-const NORMALIZE = [
+const normalize = function(path, opts) {
+  return NORMALIZERS.reduce(
+    (pathA, normalizer) => normalizer(pathA, opts),
+    path,
+  )
+}
+
+const NORMALIZERS = [
   stringifyPath,
   normalizeFileUrl,
   resolveBase,
@@ -56,25 +70,30 @@ const NORMALIZE = [
   stripSlash,
 ]
 
-const doCheck = function(path, opts) {
-  CHECK.forEach(check => check(path, opts))
+const doCheckers = function(path, opts) {
+  CHECKERS.forEach(checker => checker(path, opts))
 }
 
-const CHECK = [checkInside, checkLowerCase, checkFilters]
+const CHECKERS = [checkInside, checkLowerCase, checkFilters]
 
-const doValidate = async function(path, stat, opts) {
-  VALIDATE.forEach(validate => validate(path, stat, opts))
+const doValidators = async function(path, stat, opts) {
+  VALIDATORS.forEach(validator => validator(path, stat, opts))
 
-  await Promise.all(ASYNC_VALIDATE.map(validate => validate(path, stat, opts)))
+  await Promise.all(
+    ASYNC_VALIDATORS.map(validate => validate(path, stat, opts)),
+  )
 }
 
-const VALIDATE = [
+const VALIDATORS = [
   validateExist,
   validateDir,
   validateSpecial,
   validateStatFilter,
 ]
 
-const ASYNC_VALIDATE = [validatePermissions]
+const ASYNC_VALIDATORS = [validatePermissions]
 
-module.exports = validatePath
+module.exports = {
+  validatePath,
+  checkPath,
+}

@@ -1,3 +1,5 @@
 'use strict'
 
-module.exports = require('./main')
+module.exports = {
+  ...require('./main'),
+}
