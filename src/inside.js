@@ -3,7 +3,7 @@
 const assert = require('assert')
 const { relative } = require('path')
 
-const validateInside = function(path, { inside, base }) {
+const checkInside = function(path, { inside, base }) {
   if (inside === undefined) {
     return
   }
@@ -23,5 +23,5 @@ const INSIDE = {
 }
 
 module.exports = {
-  validateInside,
+  checkInside,
 }

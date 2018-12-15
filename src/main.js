@@ -5,12 +5,12 @@ const { getOptions } = require('./options')
 const { addDefault } = require('./default')
 const { stringifyPath } = require('./stringify')
 const { normalizeFileUrl } = require('./url')
-const { validateInside } = require('./inside')
 const { resolveBase } = require('./base')
 const { normalizePlatform } = require('./platform')
 const { stripSlash } = require('./slash')
-const { validateLowerCase } = require('./lowercase')
-const { validateFilters } = require('./filter')
+const { checkInside } = require('./inside')
+const { checkLowerCase } = require('./lowercase')
+const { checkFilters } = require('./filter')
 const { getStat, validateExist } = require('./stat')
 const { validateDir } = require('./dir')
 const { validateSpecial } = require('./special')
@@ -29,24 +29,42 @@ const validatePath = async function(path, opts) {
     return
   }
 
-  const pathB = stringifyPath(pathA)
-  const pathC = normalizeFileUrl(pathB)
-  const pathD = resolveBase(pathC, optsA)
-  validateInside(pathD, optsA)
-  const pathE = normalizePlatform(pathD, optsA)
-  const pathF = stripSlash(pathE)
-  validateLowerCase(pathF, optsA)
-  validateFilters(pathF, optsA)
+  const pathC = NORMALIZE.reduce(
+    (pathB, normalizer) => normalizer(pathB, optsA),
+    pathA,
+  )
 
-  const stat = await getStat(pathF)
-  validateExist(pathF, stat, optsA)
-  validateDir(pathF, stat, optsA)
-  validateSpecial(pathF, stat, optsA)
-  await validatePermissions(pathF, stat, optsA)
-  validateStatFilter(pathF, stat, optsA)
+  CHECK.forEach(check => check(pathC, optsA))
 
-  const pathG = await followSymlink(pathF, stat, optsA)
+  const stat = await getStat(pathC)
+
+  VALIDATE.forEach(validate => validate(pathC, stat, optsA))
+
+  await Promise.all(
+    ASYNC_VALIDATE.map(validate => validate(pathC, stat, optsA)),
+  )
+
+  const pathG = await followSymlink(pathC, stat, optsA)
   return pathG
 }
+
+const NORMALIZE = [
+  stringifyPath,
+  normalizeFileUrl,
+  resolveBase,
+  normalizePlatform,
+  stripSlash,
+]
+
+const CHECK = [checkInside, checkLowerCase, checkFilters]
+
+const VALIDATE = [
+  validateExist,
+  validateDir,
+  validateSpecial,
+  validateStatFilter,
+]
+
+const ASYNC_VALIDATE = [validatePermissions]
 
 module.exports = validatePath

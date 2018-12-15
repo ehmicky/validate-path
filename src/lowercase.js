@@ -4,7 +4,7 @@ const assert = require('assert')
 
 // If `opts.lowercase` `true`, validate that path is lowercase.
 // Reason: Mac OS X is case-insensitive.
-const validateLowerCase = function(path, { lowercase }) {
+const checkLowerCase = function(path, { lowercase }) {
   if (!lowercase) {
     return
   }
@@ -17,5 +17,5 @@ const isLowerCase = function(string) {
 }
 
 module.exports = {
-  validateLowerCase,
+  checkLowerCase,
 }

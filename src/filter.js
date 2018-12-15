@@ -48,11 +48,11 @@ const EXAMPLE_FILTER = '[a-z]'
 // They can either:
 //   - a RegExp
 //   - a function returning `true`, `false` or a error message string
-const validateFilters = function(path, opts) {
-  FILTER_OPTS.forEach(name => validateFilter(path, name, opts))
+const checkFilters = function(path, opts) {
+  FILTER_OPTS.forEach(name => checkFilter(path, name, opts))
 }
 
-const validateFilter = function(path, name, { [name]: filter }) {
+const checkFilter = function(path, name, { [name]: filter }) {
   if (filter === undefined) {
     return
   }
@@ -60,13 +60,13 @@ const validateFilter = function(path, name, { [name]: filter }) {
   const value = getFilterValue[name](path)
 
   if (typeof filter === 'function') {
-    return validateFilterFunc({ filter, value, name, path })
+    return checkFilterFunc({ filter, value, name, path })
   }
 
-  validateFilterRegExp({ filter, value, name, path })
+  checkFilterRegExp({ filter, value, name, path })
 }
 
-const validateFilterFunc = function({ filter, value, name, path }) {
+const checkFilterFunc = function({ filter, value, name, path }) {
   const message = filter(value)
 
   if (typeof message === 'string') {
@@ -76,7 +76,7 @@ const validateFilterFunc = function({ filter, value, name, path }) {
   assert(Boolean(message), `Path must match ${name}: ${path}`)
 }
 
-const validateFilterRegExp = function({ filter, value, name, path }) {
+const checkFilterRegExp = function({ filter, value, name, path }) {
   assert(
     filter.test(value),
     `Path must match ${name} '${filter.source}': ${path}`,
@@ -96,6 +96,6 @@ module.exports = {
   isFilterOption,
   normalizeFilters,
   EXAMPLE_FILTER,
-  validateFilters,
-  validateFilterFunc,
+  checkFilters,
+  checkFilterFunc,
 }
