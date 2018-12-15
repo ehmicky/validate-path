@@ -28,12 +28,14 @@ Defaults to current directory.`,
   inside: {
     boolean: true,
     alias: 'i',
-    describe: 'Validate that the path is inside of its base directory.',
+    describe: `Validate that the path is inside of its base directory or not.
+Defaults to undefined.`,
   },
   lowercase: {
     boolean: true,
     alias: 'l',
-    describe: 'Validate that the path is lowercase',
+    describe: `Validate that the path is lowercase.
+Defaults to false.`,
   },
   platform: {
     string: true,
@@ -54,16 +56,18 @@ Defaults to current OS.`,
   },
   exist: {
     boolean: true,
-    describe: 'Validate that the file exists or does not exist',
+    describe: `Validate that the file exists or does not exist.
+Defaults to undefined.`,
   },
   dir: {
     boolean: true,
-    describe: 'Validate that the file is a directory or not',
+    describe: `Validate that the file is a directory or not.
+Defaults to undefined.`,
   },
   'allow-special': {
     boolean: true,
-    describe:
-      'Allow files that are special like sockets, FIFOs, block devices and character devices',
+    describe: `Allow files that are special like sockets, FIFOs, block devices and character devices.
+Defaults to false.`,
   },
 }
 
