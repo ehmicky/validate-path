@@ -19,33 +19,33 @@ const { validateStatFilter } = require('./stat_filter')
 // eslint-disable-next-line import/max-dependencies
 const { followSymlink } = require('./symlink')
 
-// eslint-disable-next-line max-statements
 const validatePath = async function(path, opts) {
   const optsA = getOptions({ opts })
 
-  const pathA = addDefault(path, optsA)
+  const pathA = normalize(path, optsA)
 
   if (pathA === undefined) {
     return
   }
 
-  const pathC = NORMALIZE.reduce(
-    (pathB, normalizer) => normalizer(pathB, optsA),
-    pathA,
-  )
+  doCheck(pathA, optsA)
 
-  CHECK.forEach(check => check(pathC, optsA))
+  const stat = await getStat(pathA)
 
-  const stat = await getStat(pathC)
+  await doValidate(pathA, stat, optsA)
 
-  VALIDATE.forEach(validate => validate(pathC, stat, optsA))
+  const pathB = await followSymlink(pathA, stat, optsA)
+  return pathB
+}
 
-  await Promise.all(
-    ASYNC_VALIDATE.map(validate => validate(pathC, stat, optsA)),
-  )
+const normalize = function(path, opts) {
+  const pathA = addDefault(path, opts)
 
-  const pathG = await followSymlink(pathC, stat, optsA)
-  return pathG
+  if (pathA === undefined) {
+    return
+  }
+
+  return NORMALIZE.reduce((pathB, normalizer) => normalizer(pathB, opts), pathA)
 }
 
 const NORMALIZE = [
@@ -56,7 +56,17 @@ const NORMALIZE = [
   stripSlash,
 ]
 
+const doCheck = function(path, opts) {
+  CHECK.forEach(check => check(path, opts))
+}
+
 const CHECK = [checkInside, checkLowerCase, checkFilters]
+
+const doValidate = async function(path, stat, opts) {
+  VALIDATE.forEach(validate => validate(path, stat, opts))
+
+  await Promise.all(ASYNC_VALIDATE.map(validate => validate(path, stat, opts)))
+}
 
 const VALIDATE = [
   validateExist,
