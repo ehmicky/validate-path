@@ -36,6 +36,7 @@ const EXAMPLE_OPTS = {
   dir: true,
   canWrite: true,
   canExecute: true,
+  statFilter: () => true,
 }
 
 // This is the default `condition` from `jest-validate`, but with customize

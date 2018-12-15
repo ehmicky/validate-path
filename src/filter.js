@@ -97,4 +97,5 @@ module.exports = {
   normalizeFilters,
   EXAMPLE_FILTER,
   validateFilters,
+  validateFilterFunc,
 }
