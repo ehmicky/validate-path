@@ -69,6 +69,21 @@ Defaults to undefined.`,
     describe: `Allow files that are special like sockets, FIFOs, block devices and character devices.
 Defaults to false.`,
   },
+  'can-read': {
+    boolean: true,
+    describe: `Validates that the file can be read.
+Defaults to true.`,
+  },
+  'can-write': {
+    boolean: true,
+    describe: `Validates that the file can be written to.
+Defaults to undefined.`,
+  },
+  'can-execute': {
+    boolean: true,
+    describe: `Validates that the file can be executed.
+Defaults to undefined.`,
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH

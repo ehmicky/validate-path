@@ -13,8 +13,9 @@ const { validateLowerCase } = require('./lowercase')
 const { validateFilters } = require('./filter')
 const { getStat, validateExist } = require('./stat')
 const { validateDir } = require('./dir')
-// eslint-disable-next-line import/max-dependencies
 const { validateSpecial } = require('./special')
+// eslint-disable-next-line import/max-dependencies
+const { validatePermissions } = require('./permissions')
 
 // eslint-disable-next-line max-statements
 const validatePath = async function(path, opts) {
@@ -39,6 +40,7 @@ const validatePath = async function(path, opts) {
   validateExist(pathF, stat, optsA)
   validateDir(pathF, stat, optsA)
   validateSpecial(pathF, stat, optsA)
+  await validatePermissions(pathF, stat, optsA)
   return pathF
 }
 

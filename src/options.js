@@ -23,6 +23,7 @@ const DEFAULT_OPTS = {
   platform: getDefaultPlatform(),
   lowercase: false,
   allowSpecial: false,
+  canRead: true,
 }
 
 const EXAMPLE_OPTS = {
@@ -33,6 +34,8 @@ const EXAMPLE_OPTS = {
   pathFilter: EXAMPLE_FILTER,
   exist: false,
   dir: true,
+  canWrite: true,
+  canExecute: true,
 }
 
 // This is the default `condition` from `jest-validate`, but with customize
