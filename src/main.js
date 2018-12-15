@@ -3,7 +3,7 @@
 
 const { getOptions } = require('./options')
 const { addDefault } = require('./default')
-const { normalizeType } = require('./type')
+const { stringifyPath } = require('./stringify')
 const { normalizeFileUrl } = require('./url')
 const { validateInside } = require('./inside')
 const { resolveBase } = require('./base')
@@ -11,8 +11,9 @@ const { normalizePlatform } = require('./platform')
 const { stripSlash } = require('./slash')
 const { validateLowerCase } = require('./lowercase')
 const { validateFilters } = require('./filter')
-// eslint-disable-next-line import/max-dependencies
 const { getStat, validateExist } = require('./stat')
+// eslint-disable-next-line import/max-dependencies
+const { validateDir } = require('./type')
 
 // eslint-disable-next-line max-statements
 const validatePath = async function(path, opts) {
@@ -24,7 +25,7 @@ const validatePath = async function(path, opts) {
     return
   }
 
-  const pathB = normalizeType(pathA)
+  const pathB = stringifyPath(pathA)
   const pathC = normalizeFileUrl(pathB)
   const pathD = resolveBase(pathC, optsA)
   validateInside(pathD, optsA)
@@ -35,6 +36,7 @@ const validatePath = async function(path, opts) {
 
   const stat = await getStat(pathF)
   validateExist(pathF, stat, optsA)
+  validateDir(pathF, stat, optsA)
   return pathF
 }
 

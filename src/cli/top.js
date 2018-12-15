@@ -56,6 +56,10 @@ Defaults to current OS.`,
     boolean: true,
     describe: 'Validate that the file exists or does not exist',
   },
+  dir: {
+    boolean: true,
+    describe: 'Validate that the file is a directory or not',
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH

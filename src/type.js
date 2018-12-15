@@ -1,30 +1,24 @@
 'use strict'
 
 const assert = require('assert')
-const {
-  Buffer: { isBuffer },
-} = require('buffer')
 
-const { isFileUrl, FILE_PROTOCOL } = require('./url')
-
-// Normalize path to string. Can be buffer or `file://` URL.
-const normalizeType = function(path) {
-  if (isBuffer(path)) {
-    return path.toString()
+// Validate that the file is a directory or not according to `opts.dir`,
+// which defaults to `undefined` (i.e. no validation)
+const validateDir = function(path, stat, { dir }) {
+  // If the file does not exist, we skip the check
+  if (stat === undefined || dir === undefined) {
+    return
   }
 
-  if (isFileUrl(path)) {
-    return path.toString()
-  }
+  const isDirectory = stat.isDirectory()
+  checkDir({ dir, isDirectory, path })
+}
 
-  assert(
-    typeof path === 'string',
-    `Path must be a string, a buffer or a '${FILE_PROTOCOL}//' URL: ${path}`,
-  )
-
-  return path
+const checkDir = function({ dir, isDirectory, path }) {
+  assert(!dir || isDirectory, `Path must be a directory: ${path}`)
+  assert(dir || !isDirectory, `Path must not be a directory: ${path}`)
 }
 
 module.exports = {
-  normalizeType,
+  validateDir,
 }
