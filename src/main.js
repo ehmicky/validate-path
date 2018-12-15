@@ -11,9 +11,11 @@ const { normalizePlatform } = require('./platform')
 const { stripSlash } = require('./slash')
 const { validateLowerCase } = require('./lowercase')
 const { validateFilters } = require('./filter')
+// eslint-disable-next-line import/max-dependencies
+const { getStat, validateExist } = require('./stat')
 
 // eslint-disable-next-line max-statements
-const validatePath = function(path, opts) {
+const validatePath = async function(path, opts) {
   const optsA = getOptions({ opts })
 
   const pathA = addDefault(path, optsA)
@@ -30,6 +32,9 @@ const validatePath = function(path, opts) {
   const pathF = stripSlash(pathE)
   validateLowerCase(pathF, optsA)
   validateFilters(pathF, optsA)
+
+  const stat = await getStat(pathF)
+  validateExist(pathF, stat, optsA)
   return pathF
 }
 

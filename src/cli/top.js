@@ -52,6 +52,10 @@ Defaults to current OS.`,
     requiresArg: true,
     describe: 'Validate that the filename matches a regular expression',
   },
+  exist: {
+    boolean: true,
+    describe: 'Validate that the file exists or does not exist',
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH

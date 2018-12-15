@@ -57,6 +57,7 @@
     "@babel/runtime": "^7.2.0",
     "core-js": "^2.6.0",
     "jest-validate": "^23.6.0",
+    "util.promisify": "^1.0.0",
     "yargs": "^12.0.5"
   },
   "devDependencies": {
@@ -95,8 +96,7 @@
     "plugin-error": "^1.0.1",
     "prettier": "^1.15.3",
     "release-it": "^9.1.0",
-    "tar": "^4.4.8",
-    "util.promisify": "^1.0.0"
+    "tar": "^4.4.8"
   },
   "engines": {
     "node": ">=6.5.0"

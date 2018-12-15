@@ -8,11 +8,11 @@ const { defineCli } = require('./top')
 const { parseConfig } = require('./parse')
 
 // Parse CLI arguments then run tasks
-const runCli = function() {
+const runCli = async function() {
   try {
     const yargs = defineCli()
     const { path, ...config } = parseConfig({ yargs })
-    const pathA = validatePath(path, config)
+    const pathA = await validatePath(path, config)
     // eslint-disable-next-line no-console, no-restricted-globals
     console.log(pathA)
   } catch (error) {

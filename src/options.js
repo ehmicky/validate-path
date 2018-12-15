@@ -30,6 +30,7 @@ const EXAMPLE_OPTS = {
   inside: true,
   filenameFilter: EXAMPLE_FILTER,
   pathFilter: EXAMPLE_FILTER,
+  exist: false,
 }
 
 // This is the default `condition` from `jest-validate`, but with customize
