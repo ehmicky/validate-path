@@ -22,6 +22,7 @@ const DEFAULT_OPTS = {
   base: getDefaultBase(),
   platform: getDefaultPlatform(),
   lowercase: false,
+  allowSpecial: false,
 }
 
 const EXAMPLE_OPTS = {

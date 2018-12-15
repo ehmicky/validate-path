@@ -60,6 +60,11 @@ Defaults to current OS.`,
     boolean: true,
     describe: 'Validate that the file is a directory or not',
   },
+  'allow-special': {
+    boolean: true,
+    describe:
+      'Allow files that are special like sockets, FIFOs, block devices and character devices',
+  },
 }
 
 const USAGE = `$0 [OPTS] PATH
