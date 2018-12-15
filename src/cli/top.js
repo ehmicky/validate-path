@@ -15,7 +15,6 @@ const defineCli = function() {
 const CONFIG = {
   'default-value': {
     string: true,
-    alias: 'd',
     describe: 'Path default value',
     group: 'Normalization:',
   },
@@ -29,7 +28,6 @@ Defaults to current directory.`,
   },
   platform: {
     string: true,
-    alias: 'p',
     requiresArg: true,
     describe: `Target OS ("unix" or "windows"), used to determine path delimiters.
 Defaults to current OS.`,
@@ -53,47 +51,55 @@ Defaults to false.`,
   'path-filter': {
     string: true,
     requiresArg: true,
+    alias: 'p',
     describe: 'Validate that the path matches a regular expression',
     group: 'Validation:',
   },
   'filename-filter': {
     string: true,
     requiresArg: true,
+    alias: 'f',
     describe: 'Validate that the filename matches a regular expression',
     group: 'Validation:',
   },
   exist: {
     boolean: true,
+    alias: 'e',
     describe: `Validate that the file exists or does not exist.
 Defaults to undefined.`,
     group: 'Validation:',
   },
   dir: {
     boolean: true,
+    alias: 'd',
     describe: `Validate that the file is a directory or not.
 Defaults to undefined.`,
     group: 'Validation:',
   },
   'allow-special': {
     boolean: true,
+    alias: 's',
     describe: `Allow files that are special like sockets, FIFOs, block devices and character devices.
 Defaults to false.`,
     group: 'Validation:',
   },
   'can-read': {
     boolean: true,
+    alias: 'r',
     describe: `Validates that the file can be read.
 Defaults to true.`,
     group: 'Validation:',
   },
   'can-write': {
     boolean: true,
+    alias: 'w',
     describe: `Validates that the file can be written to.
 Defaults to undefined.`,
     group: 'Validation:',
   },
   'can-execute': {
     boolean: true,
+    alias: 'x',
     describe: `Validates that the file can be executed.
 Defaults to undefined.`,
     group: 'Validation:',
