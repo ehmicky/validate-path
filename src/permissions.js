@@ -1,11 +1,9 @@
 'use strict'
 
-const { constants, access } = require('fs')
+const { constants } = require('fs')
 const assert = require('assert')
 
-const promisify = require('util.promisify')
-
-const pAccess = promisify(access)
+const { pAccess } = require('./fs')
 
 // Validate file permissions according to `opts.canRead|canWrite|canExecute`
 // `undefined`, `true` or `false`

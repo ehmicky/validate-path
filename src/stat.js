@@ -1,12 +1,8 @@
 'use strict'
 
-const { stat: fsStat, access } = require('fs')
 const assert = require('assert')
 
-const promisify = require('util.promisify')
-
-const pAccess = promisify(access)
-const pStat = promisify(fsStat)
+const { pAccess, pStat } = require('./fs')
 
 // Retrieve file information
 const getStat = async function(path) {
