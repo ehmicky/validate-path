@@ -21,6 +21,7 @@ const getOptions = function({ opts = {} }) {
 const DEFAULT_OPTS = {
   base: getDefaultBase(),
   platform: getDefaultPlatform(),
+  followSymlinks: false,
   lowercase: false,
   allowSpecial: false,
   canRead: true,

@@ -15,8 +15,9 @@ const { getStat, validateExist } = require('./stat')
 const { validateDir } = require('./dir')
 const { validateSpecial } = require('./special')
 const { validatePermissions } = require('./permissions')
-// eslint-disable-next-line import/max-dependencies
 const { validateStatFilter } = require('./stat_filter')
+// eslint-disable-next-line import/max-dependencies
+const { followSymlink } = require('./symlink')
 
 // eslint-disable-next-line max-statements
 const validatePath = async function(path, opts) {
@@ -43,7 +44,9 @@ const validatePath = async function(path, opts) {
   validateSpecial(pathF, stat, optsA)
   await validatePermissions(pathF, stat, optsA)
   validateStatFilter(pathF, stat, optsA)
-  return pathF
+
+  const pathG = await followSymlink(pathF, stat, optsA)
+  return pathG
 }
 
 module.exports = validatePath

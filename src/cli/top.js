@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 'use strict'
 
 const yargs = require('yargs')
@@ -32,6 +33,11 @@ Defaults to current directory.`,
     describe: `Target OS ("unix" or "windows"), used to determine path delimiters.
 Defaults to current OS.`,
     group: 'Normalization:',
+  },
+  'follow-symlinks': {
+    boolean: true,
+    describe: `Resolve symbolic links.
+Defaults to false.`,
   },
 
   inside: {
@@ -115,3 +121,4 @@ const MAIN_EXAMPLE = '$0'
 module.exports = {
   defineCli,
 }
+/* eslint-enable max-lines */
