@@ -1,6 +1,6 @@
 'use strict'
 
-const { pRealpath } = require('./fs')
+const { pRealpath } = require('../utils')
 
 const followSymlink = async function(path, stat, { followSymlinks }) {
   if (stat === undefined || !followSymlinks) {

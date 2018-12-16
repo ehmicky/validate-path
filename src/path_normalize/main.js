@@ -7,15 +7,15 @@ const { normalizePlatform } = require('./platform')
 const { stripSlash } = require('./slash')
 
 // Normalize file path.
-// File path might point to non-existing file.
-const normalize = function(path, opts) {
-  return NORMALIZERS.reduce(
+// Only normalize the path string, i.e. does not check if file exists.
+const pathNormalize = function(path, opts) {
+  return PATH_NORMALIZERS.reduce(
     (pathA, normalizer) => normalizer(pathA, opts),
     path,
   )
 }
 
-const NORMALIZERS = [
+const PATH_NORMALIZERS = [
   stringifyPath,
   normalizeFileUrl,
   resolveBase,
@@ -24,5 +24,5 @@ const NORMALIZERS = [
 ]
 
 module.exports = {
-  normalize,
+  pathNormalize,
 }

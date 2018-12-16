@@ -1,10 +1,11 @@
 'use strict'
 
-const assert = require('assert')
 // We make sure Unix paths are passed to filters, even on Windows
 const {
   posix: { basename, normalize },
 } = require('path')
+
+const { validateFilterFunc, validateFilterRegExp } = require('../utils')
 
 // Normalize string `opts.*Filter` to RegExps
 const normalizeFilters = function({ opts }) {
@@ -48,11 +49,11 @@ const EXAMPLE_FILTER = '[a-z]'
 // They can either:
 //   - a RegExp
 //   - a function returning `true`, `false` or a error message string
-const checkFilters = function(path, opts) {
-  FILTER_OPTS.forEach(name => checkFilter(path, name, opts))
+const validateFilters = function(path, opts) {
+  FILTER_OPTS.forEach(name => validateFilter(path, name, opts))
 }
 
-const checkFilter = function(path, name, { [name]: filter }) {
+const validateFilter = function(path, name, { [name]: filter }) {
   if (filter === undefined) {
     return
   }
@@ -60,27 +61,10 @@ const checkFilter = function(path, name, { [name]: filter }) {
   const value = getFilterValue[name](path)
 
   if (typeof filter === 'function') {
-    return checkFilterFunc({ filter, value, name, path })
+    return validateFilterFunc({ filter, value, name, path })
   }
 
-  checkFilterRegExp({ filter, value, name, path })
-}
-
-const checkFilterFunc = function({ filter, value, name, path }) {
-  const message = filter(value)
-
-  if (typeof message === 'string') {
-    throw new TypeError(`${message}: ${path}`)
-  }
-
-  assert(Boolean(message), `Path must match ${name}: ${path}`)
-}
-
-const checkFilterRegExp = function({ filter, value, name, path }) {
-  assert(
-    filter.test(value),
-    `Path must match ${name} '${filter.source}': ${path}`,
-  )
+  validateFilterRegExp({ filter, value, name, path })
 }
 
 // Retrieve the filename of path
@@ -96,6 +80,5 @@ module.exports = {
   isFilterOption,
   normalizeFilters,
   EXAMPLE_FILTER,
-  checkFilters,
-  checkFilterFunc,
+  validateFilters,
 }

@@ -3,7 +3,7 @@
 const { constants } = require('fs')
 const assert = require('assert')
 
-const { pAccess } = require('./fs')
+const { pAccess } = require('../utils')
 
 // Validate file permissions according to `opts.canRead|canWrite|canExecute`
 // `undefined`, `true` or `false`

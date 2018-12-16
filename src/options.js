@@ -3,9 +3,12 @@
 const { validate } = require('jest-validate')
 
 const { omitBy } = require('./utils')
-const { getDefaultBase } = require('./base')
-const { getDefaultPlatform } = require('./platform')
-const { normalizeFilters, EXAMPLE_FILTER, isFilterOption } = require('./filter')
+const { getDefaultBase, getDefaultPlatform } = require('./path_normalize')
+const {
+  normalizeFilters,
+  EXAMPLE_FILTER,
+  isFilterOption,
+} = require('./path_validate')
 
 // Validate options and assign default options
 const getOptions = function({ opts = {} }) {

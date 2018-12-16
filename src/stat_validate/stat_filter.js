@@ -1,6 +1,6 @@
 'use strict'
 
-const { checkFilterFunc } = require('./filter')
+const { validateFilterFunc } = require('../utils')
 
 // Validate a file `stat` according to `opts.statFilter` function
 const validateStatFilter = function(path, stat, { statFilter }) {
@@ -8,7 +8,12 @@ const validateStatFilter = function(path, stat, { statFilter }) {
     return
   }
 
-  checkFilterFunc({ filter: statFilter, value: stat, name: 'statFilter', path })
+  validateFilterFunc({
+    filter: statFilter,
+    value: stat,
+    name: 'statFilter',
+    path,
+  })
 }
 
 module.exports = {

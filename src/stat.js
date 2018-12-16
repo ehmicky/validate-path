@@ -1,8 +1,6 @@
 'use strict'
 
-const assert = require('assert')
-
-const { pAccess, pStat } = require('./fs')
+const { pAccess, pStat } = require('./utils')
 
 // Retrieve file information
 const getStat = async function(path) {
@@ -19,18 +17,6 @@ const getStat = async function(path) {
   return stat
 }
 
-// Validate a file exists or not according to `opts.exist`, which can be
-// `undefined` (default), `true` or `false`
-const validateExist = function(path, stat, { exist }) {
-  if (exist === undefined) {
-    return
-  }
-
-  assert(!exist || stat !== undefined, `File does not exist: ${path}`)
-  assert(exist || stat === undefined, `File already exists: ${path}`)
-}
-
 module.exports = {
   getStat,
-  validateExist,
 }

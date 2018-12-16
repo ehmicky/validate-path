@@ -1,79 +1,62 @@
 'use strict'
 
 const { getOptions } = require('./options')
-const { addDefault } = require('./default')
-const { normalize } = require('./normalize')
-const { checkInside } = require('./inside')
-const { checkLowerCase } = require('./lowercase')
-const { checkFilters } = require('./filter')
-const { getStat, validateExist } = require('./stat')
-const { validateDir } = require('./dir')
-const { validateSpecial } = require('./special')
-const { validatePermissions } = require('./permissions')
-const { validateStatFilter } = require('./stat_filter')
-const { followSymlink } = require('./symlink')
+const { pathNormalize, addDefault } = require('./path_normalize')
+const { pathValidate } = require('./path_validate')
+const { getStat } = require('./stat')
+const { statValidate } = require('./stat_validate')
+const { statNormalize } = require('./stat_normalize')
 
-const validatePath = async function(path, opts) {
-  const optsA = getOptions({ opts })
-
-  const pathA = check(path, optsA)
-
-  if (pathA === undefined) {
-    return
-  }
-
-  const stat = await getStat(pathA)
-
-  await doValidators(pathA, stat, optsA)
-
-  const pathB = await followSymlink(pathA, stat, optsA)
-  return pathB
-}
-
+// Validate and normalize a path.
+// Only checks the path string, i.e. does not check if file exists.
 const checkPath = function(path, opts) {
-  const optsA = getOptions({ opts })
-  const pathA = check(path, optsA)
+  const { path: pathA } = beforeStat(path, opts)
   return pathA
 }
 
-const check = function(path, opts) {
-  const pathA = addDefault(path, opts)
+// Validate and normalize a path.
+// Also checks if the file exists, its permissions, etc.
+const validatePath = async function(path, opts) {
+  const { opts: optsA, path: pathA } = beforeStat(path, opts)
 
   if (pathA === undefined) {
     return
   }
 
-  const pathB = normalize(pathA, opts)
-
-  doCheckers(pathB, opts)
-
+  const pathB = await afterStat(pathA, optsA)
   return pathB
 }
 
-const doCheckers = function(path, opts) {
-  CHECKERS.forEach(checker => checker(path, opts))
+// Validation/normalization that does not use `stat`
+const beforeStat = function(path, opts) {
+  const optsA = getOptions({ opts })
+
+  const pathA = addDefault(path, opts)
+
+  // If path was `undefined` and no `opts.defaultValue` was defined,
+  // we return `undefined`
+  if (pathA === undefined) {
+    return { opts: optsA }
+  }
+
+  const pathB = pathNormalize(pathA, opts)
+
+  pathValidate(pathB, opts)
+
+  return { opts: optsA, path: pathB }
 }
 
-const CHECKERS = [checkInside, checkLowerCase, checkFilters]
+// Validation/normalization that use `stat`
+const afterStat = async function(path, opts) {
+  const stat = await getStat(path)
 
-const doValidators = async function(path, stat, opts) {
-  VALIDATORS.forEach(validator => validator(path, stat, opts))
+  await statValidate(path, stat, opts)
 
-  await Promise.all(
-    ASYNC_VALIDATORS.map(validate => validate(path, stat, opts)),
-  )
+  const pathA = await statNormalize(path, stat, opts)
+  return pathA
 }
-
-const VALIDATORS = [
-  validateExist,
-  validateDir,
-  validateSpecial,
-  validateStatFilter,
-]
-
-const ASYNC_VALIDATORS = [validatePermissions]
 
 module.exports = {
-  validatePath,
   checkPath,
+  validatePath,
 }
