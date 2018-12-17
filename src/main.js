@@ -1,3 +1,4 @@
+// eslint-disable-next-line filenames/match-exported
 'use strict'
 
 const { getOptions } = require('./options')
@@ -6,13 +7,6 @@ const { pathValidate } = require('./path_validate')
 const { getStat } = require('./stat')
 const { statValidate } = require('./stat_validate')
 const { statNormalize } = require('./stat_normalize')
-
-// Validate and normalize a path.
-// Only checks the path string, i.e. does not check if file exists.
-const checkPath = function(path, opts) {
-  const { path: pathA } = beforeStat(path, opts)
-  return pathA
-}
 
 // Validate and normalize a path.
 // Also checks if the file exists, its permissions, etc.
@@ -26,6 +20,16 @@ const validatePath = async function(path, opts) {
   const pathB = await afterStat(pathA, optsA)
   return pathB
 }
+
+// Validate and normalize a path.
+// Only checks the path string, i.e. does not check if file exists.
+const validatePathSync = function(path, opts) {
+  const { path: pathA } = beforeStat(path, opts)
+  return pathA
+}
+
+// eslint-disable-next-line fp/no-mutation
+validatePath.sync = validatePathSync
 
 // Validation/normalization that does not use `stat`
 const beforeStat = function(path, opts) {
@@ -56,7 +60,4 @@ const afterStat = async function(path, opts) {
   return pathA
 }
 
-module.exports = {
-  checkPath,
-  validatePath,
-}
+module.exports = validatePath
