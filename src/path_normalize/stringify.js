@@ -22,6 +22,8 @@ const stringifyPath = function(path) {
     `Path must be a string, a buffer or a '${FILE_PROTOCOL}//' URL: ${path}`,
   )
 
+  assert(path.trim() !== '', 'Path must not be empty')
+
   return path
 }
 
