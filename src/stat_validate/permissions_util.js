@@ -8,6 +8,17 @@ const { dirname } = require('path')
 
 const { pAccess, pStat } = require('../utils')
 
+// Separate into own utility
+// Replace opts.exists|can* by opts.access (flags)
+// Flags:
+// - 'c' (can create)
+// - 'e' (must exist)
+// - 'r', 'w', 'x'
+// - '!FLAG' (negation)
+// Logic:
+// - e and c are independent (in case file is removed)
+// - if c, rwx also check permission of created file
+// - if file does not exists, rwx does not check fs.access()
 const checkPermissions = async function(path, flags) {
   const flagsA = flags.replace('c', '')
 
