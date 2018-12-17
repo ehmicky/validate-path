@@ -5,14 +5,12 @@ const assert = require('assert')
 const { omitBy } = require('../utils')
 
 const parseConfig = function({ yargs }) {
-  const {
-    // eslint-disable-next-line id-length
-    _: [path, ...extra],
-    ...config
-  } = yargs.parse()
-  const configA = { ...config, path }
+  // eslint-disable-next-line id-length
+  const { _: paths, ...config } = yargs.parse()
 
-  assert(extra.length === 0, `Too many arguments: ${extra.join(' ')}`)
+  assert(paths.length !== 0, 'Missing path argument')
+
+  const configA = { ...config, paths }
 
   const configB = omitBy(configA, isInternalKey)
   return configB

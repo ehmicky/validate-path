@@ -11,10 +11,10 @@ const { parseConfig } = require('./parse')
 const runCli = async function() {
   try {
     const yargs = defineCli()
-    const { path, ...config } = parseConfig({ yargs })
-    const pathA = await validatePath(path, config)
+    const { paths, ...config } = parseConfig({ yargs })
+    const pathsA = await validatePath(paths, config)
     // eslint-disable-next-line no-console, no-restricted-globals
-    console.log(pathA)
+    console.log(pathsA.join('\n'))
   } catch (error) {
     runCliHandler(error)
   }
