@@ -4,13 +4,14 @@ const assert = require('assert')
 
 const { validate } = require('jest-validate')
 
-const { omitBy, isObject } = require('./utils')
+const { handleSync } = require('./handle')
 const { getDefaultBase, getDefaultPlatform } = require('./path_normalize')
 const {
   normalizeFilters,
   EXAMPLE_FILTER,
   isFilterOption,
 } = require('./path_validate')
+const { omitBy, isObject, mapValues } = require('./utils')
 
 // Validate options and assign default options
 // `validatePath.sync()` can only use sync options.
@@ -24,7 +25,9 @@ const getOptions = function({ opts = {}, type }) {
 
   const optsB = omitBy(optsA, value => value === undefined)
   const optsC = { ...DEFAULT_OPTS[type], ...optsB }
-  return optsC
+
+  const optsD = handleOpts({ opts: optsC })
+  return optsD
 }
 
 const assertOpts = function({ opts }) {
@@ -80,6 +83,26 @@ const condition = function(option, validOption) {
 }
 
 const { toString: getType } = Object.prototype
+
+// Some options are paths themselves, i.e. need to be recursively validated
+// by this library itself.
+// We use `handleSync()` not `handleAsync()` so it works for sync as well.
+const handleOpts = function({ opts }) {
+  const optsOpts = mapValues(OPTS_OPTS, (optOpts, name) =>
+    handleOpt({ opts, optOpts, name }),
+  )
+  return { ...opts, ...optsOpts }
+}
+
+const handleOpt = function({ opts, optOpts, name }) {
+  try {
+    return handleSync(opts[name], optOpts)
+  } catch (error) {
+    throw new Error(`Invalid option '${name}': ${error.message}`)
+  }
+}
+
+const OPTS_OPTS = { base: {}, defaultValue: {} }
 
 module.exports = {
   getOptions,
