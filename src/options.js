@@ -16,7 +16,7 @@ const {
 // `validatePath.sync()` can only use sync options.
 // `validatePath()` can use sync or async options.
 const getOptions = function({ opts = {}, type }) {
-  assert(isObject(opts), `Options argument must be an object: ${opts}`)
+  assertOpts({ opts })
 
   const optsA = normalizeFilters({ opts })
 
