@@ -1,8 +1,10 @@
 'use strict'
 
+const assert = require('assert')
+
 const { validate } = require('jest-validate')
 
-const { omitBy } = require('./utils')
+const { omitBy, isObject } = require('./utils')
 const { getDefaultBase, getDefaultPlatform } = require('./path_normalize')
 const {
   normalizeFilters,
@@ -14,6 +16,8 @@ const {
 // `validatePath.sync()` can only use sync options.
 // `validatePath()` can use sync or async options.
 const getOptions = function({ opts = {}, type }) {
+  assert(isObject(opts), `Options argument must be an object: ${opts}`)
+
   const optsA = normalizeFilters({ opts })
 
   validate(optsA, { exampleConfig: EXAMPLE_OPTS[type], condition })
@@ -21,6 +25,10 @@ const getOptions = function({ opts = {}, type }) {
   const optsB = omitBy(optsA, value => value === undefined)
   const optsC = { ...DEFAULT_OPTS[type], ...optsB }
   return optsC
+}
+
+const assertOpts = function({ opts }) {
+  assert(isObject(opts), `Options argument must be an object: ${opts}`)
 }
 
 // Used for validation + example + defaults
@@ -75,4 +83,5 @@ const { toString: getType } = Object.prototype
 
 module.exports = {
   getOptions,
+  assertOpts,
 }
