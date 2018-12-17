@@ -1,52 +1,50 @@
 'use strict'
 
-const { constants } = require('fs')
 const assert = require('assert')
 
-const { pAccess } = require('../utils')
+const { checkPermissions } = require('./permissions_util')
 
 // Validate file permissions according to `opts.canRead|canWrite|canExecute`
 // `undefined`, `true` or `false`
 const validatePermissions = async function(path, stat, opts) {
-  if (stat === undefined) {
-    return
-  }
-
   const promises = PERMISSIONS.map(permission =>
-    validatePermission({ ...permission, path, opts }),
+    validatePermission({ ...permission, path, stat, opts }),
   )
   await Promise.all(promises)
 }
 
 const PERMISSIONS = [
-  { optName: 'canRead', constant: 'R_OK', name: 'readable' },
-  { optName: 'canWrite', constant: 'W_OK', name: 'writable' },
-  { optName: 'canExecute', constant: 'X_OK', name: 'executable' },
+  { optName: 'canCreate', flags: 'c', name: 'creatable' },
+  { optName: 'canRead', flags: 'r', name: 'readable' },
+  { optName: 'canWrite', flags: 'w', name: 'writable' },
+  { optName: 'canExecute', flags: 'x', name: 'executable' },
 ]
 
 const validatePermission = async function({
   optName,
-  constant,
+  flags,
   name,
   path,
-  opts: { [optName]: opt },
+  stat,
+  opts: { [optName]: opt, canCreate },
 }) {
   if (opt === undefined) {
     return
   }
 
-  const permission = await checkPermission({ path, constant })
+  const flagsA = addCreateFlag({ canCreate, flags, stat })
+  const permission = await checkPermissions(path, flagsA)
+
   assert(!opt || permission, `File must be ${name}: ${path}`)
   assert(opt || !permission, `File must not be ${name}: ${path}`)
 }
 
-const checkPermission = async function({ path, constant }) {
-  try {
-    await pAccess(path, constants[constant])
-    return true
-  } catch (error) {
-    return false
+const addCreateFlag = function({ canCreate, flags, stat }) {
+  if (!canCreate || stat !== undefined || flags.includes('c')) {
+    return flags
   }
+
+  return `${flags}c`
 }
 
 module.exports = {

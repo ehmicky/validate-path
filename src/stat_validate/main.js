@@ -3,8 +3,8 @@
 const { validateExist } = require('./exist')
 const { validateDir } = require('./dir')
 const { validateSpecial } = require('./special')
-const { validatePermissions } = require('./permissions')
 const { validateStatFilter } = require('./stat_filter')
+const { validatePermissions } = require('./permissions')
 
 // Validate file path.
 // Use `stat` information, i.e. from the actual file.

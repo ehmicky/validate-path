@@ -45,7 +45,6 @@ const ASYNC_DEFAULT_OPTS = {
   ...SYNC_DEFAULT_OPTS,
   followSymlinks: false,
   allowSpecial: false,
-  canRead: true,
 }
 
 const DEFAULT_OPTS = { sync: SYNC_DEFAULT_OPTS, async: ASYNC_DEFAULT_OPTS }
@@ -63,6 +62,8 @@ const ASYNC_EXAMPLE_OPTS = {
   ...SYNC_EXAMPLE_OPTS,
   exist: false,
   dir: true,
+  canCreate: true,
+  canRead: true,
   canWrite: true,
   canExecute: true,
   statFilter: () => true,

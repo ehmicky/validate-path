@@ -89,11 +89,18 @@ Defaults to undefined.`,
 Defaults to false.`,
     group: 'Validation:',
   },
+  'can-create': {
+    boolean: true,
+    alias: 'c',
+    describe: `Validates that the file can be created if it does not exist.
+Defaults to undefined.`,
+    group: 'Validation:',
+  },
   'can-read': {
     boolean: true,
     alias: 'r',
     describe: `Validates that the file can be read.
-Defaults to true.`,
+Defaults to undefined.`,
     group: 'Validation:',
   },
   'can-write': {
