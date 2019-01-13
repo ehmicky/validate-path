@@ -7,6 +7,8 @@ const { handleSync, handleAsync } = require('./handle')
 
 // Validate and normalize a path.
 // Only checks the path string, i.e. does not check if file exists.
+// We are not validating file permissions, because Node.js does not allow
+// doing this out-of-the-box on Windows.
 const validatePathSync = function(path, opts = {}) {
   assertOpts({ opts })
 
