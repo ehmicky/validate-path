@@ -38,7 +38,6 @@ const assertOpts = function({ opts }) {
 const SYNC_DEFAULT_OPTS = {
   base: getDefaultBase(),
   platform: getDefaultPlatform(),
-  lowercase: false,
 }
 
 const ASYNC_DEFAULT_OPTS = {

@@ -47,13 +47,6 @@ Defaults to false.`,
 Defaults to undefined.`,
     group: 'Validation:',
   },
-  lowercase: {
-    boolean: true,
-    alias: 'l',
-    describe: `Validate that the path is lowercase.
-Defaults to false.`,
-    group: 'Validation:',
-  },
   'path-filter': {
     string: true,
     requiresArg: true,

@@ -1,7 +1,6 @@
 'use strict'
 
 const { validateInside } = require('./inside')
-const { validateLowerCase } = require('./lowercase')
 const { validateFilters } = require('./path_filter')
 
 // Validate file path.
@@ -10,7 +9,7 @@ const pathValidate = function(path, opts) {
   PATH_VALIDATORS.forEach(validator => validator(path, opts))
 }
 
-const PATH_VALIDATORS = [validateInside, validateLowerCase, validateFilters]
+const PATH_VALIDATORS = [validateInside, validateFilters]
 
 module.exports = {
   pathValidate,
