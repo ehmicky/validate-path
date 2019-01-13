@@ -1,20 +1,26 @@
 'use strict'
 
-const { pAccess, pStat } = require('./utils')
+const { pStat } = require('./utils')
 
 // Retrieve file information
 const getStat = async function(path) {
+  // Other errors should not happen, i.e. signals a bug in this library (it
+  // should handle those error types too).
   try {
-    await pAccess(path)
-    // Non-existing files have an `undefined` `stat`.
+    const stat = await pStat(path)
+    return stat
   } catch (error) {
+    eGetStat({ error })
+  }
+}
+
+const eGetStat = function({ error, error: { type } }) {
+  // Non-existing files have an `undefined` `stat`.
+  if (type === 'ENOENT') {
     return
   }
 
-  // Other errors should not happen, i.e. signals a bug in this library (it
-  // should handle those error types too).
-  const stat = await pStat(path)
-  return stat
+  throw error
 }
 
 module.exports = {

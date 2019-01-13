@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 'use strict'
 
 const yargs = require('yargs')
@@ -82,34 +81,6 @@ Defaults to undefined.`,
 Defaults to false.`,
     group: 'Validation:',
   },
-  'can-create': {
-    boolean: true,
-    alias: 'c',
-    describe: `Validates that the file can be created if it does not exist.
-Defaults to undefined.`,
-    group: 'Validation:',
-  },
-  'can-read': {
-    boolean: true,
-    alias: 'r',
-    describe: `Validates that the file can be read.
-Defaults to undefined.`,
-    group: 'Validation:',
-  },
-  'can-write': {
-    boolean: true,
-    alias: 'w',
-    describe: `Validates that the file can be written to.
-Defaults to undefined.`,
-    group: 'Validation:',
-  },
-  'can-execute': {
-    boolean: true,
-    alias: 'x',
-    describe: `Validates that the file can be executed.
-Defaults to undefined.`,
-    group: 'Validation:',
-  },
 }
 
 const USAGE = `$0 [OPTS] PATH
@@ -121,4 +92,3 @@ const MAIN_EXAMPLE = '$0'
 module.exports = {
   defineCli,
 }
-/* eslint-enable max-lines */

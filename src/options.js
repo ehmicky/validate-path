@@ -61,10 +61,6 @@ const ASYNC_EXAMPLE_OPTS = {
   ...SYNC_EXAMPLE_OPTS,
   exist: false,
   dir: true,
-  canCreate: true,
-  canRead: true,
-  canWrite: true,
-  canExecute: true,
   statFilter: () => true,
 }
 

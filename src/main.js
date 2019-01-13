@@ -26,7 +26,7 @@ const validatePathSync = function(path, opts = {}) {
 }
 
 // Validate and normalize a path.
-// Also checks if the file exists, its permissions, etc.
+// Also checks if the file exists, etc.
 const validatePath = function(path, opts = {}) {
   assertOpts({ opts })
 

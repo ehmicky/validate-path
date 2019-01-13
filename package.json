@@ -27,7 +27,6 @@
     "file",
     "validation",
     "normalization",
-    "permissions",
     "exists",
     "stat",
     "cross-platform",
@@ -38,7 +37,6 @@
     "filesystem",
     "filename",
     "directory",
-    "chmod",
     "default",
     "symlink"
   ],

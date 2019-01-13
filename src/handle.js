@@ -35,7 +35,7 @@ const handleAsync = async function(path, opts) {
 
   const stat = await getStat(pathA)
 
-  await statValidate(pathA, stat, opts)
+  statValidate(pathA, stat, opts)
 
   const pathB = await statNormalize(pathA, stat, opts)
   return pathB
