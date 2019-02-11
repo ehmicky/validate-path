@@ -2,7 +2,7 @@
 
 const test = require('ava')
 
-const validatePath = require('../localpack')
+const validatePath = require('..')
 
 test('Dummy test', t => {
   t.is(typeof validatePath, 'function')
