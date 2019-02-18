@@ -56,7 +56,7 @@
     "core-js": "^2.6.5",
     "jest-validate": "^24.0.0",
     "util.promisify": "^1.0.0",
-    "yargs": "^13.2.0"
+    "yargs": "^13.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
