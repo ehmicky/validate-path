@@ -1,6 +1,5 @@
 'use strict'
 
-const assert = require('assert')
 const { relative } = require('path')
 
 const validateInside = function(path, { inside, base }) {
@@ -11,10 +10,11 @@ const validateInside = function(path, { inside, base }) {
   const pathToBase = relative(base, path)
   const isOutside = pathToBase.startsWith('..')
 
-  assert(
-    inside !== isOutside,
-    `Path must be ${INSIDE[inside]} its base directory '${base}': ${path}`,
-  )
+  if (inside === isOutside) {
+    throw new Error(
+      `Path must be ${INSIDE[inside]} its base directory '${base}': ${path}`,
+    )
+  }
 }
 
 const INSIDE = {

@@ -1,14 +1,14 @@
 'use strict'
 
-const assert = require('assert')
-
 const { omitBy } = require('../utils')
 
 const parseConfig = function({ yargs }) {
   // eslint-disable-next-line id-length
   const { _: paths, ...config } = yargs.parse()
 
-  assert(paths.length !== 0, 'Missing path argument')
+  if (paths.length === 0) {
+    throw new Error('Missing path argument')
+  }
 
   const configA = { ...config, paths }
 

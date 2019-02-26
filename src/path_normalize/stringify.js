@@ -1,6 +1,5 @@
 'use strict'
 
-const assert = require('assert')
 const {
   Buffer: { isBuffer },
 } = require('buffer')
@@ -17,14 +16,21 @@ const stringifyPath = function(path) {
     return path.toString()
   }
 
-  assert(
-    typeof path === 'string',
-    `Path must be a string, a buffer or a '${FILE_PROTOCOL}//' URL: ${path}`,
-  )
-
-  assert(path.trim() !== '', 'Path must not be empty')
+  validatePath({ path })
 
   return path
+}
+
+const validatePath = function({ path }) {
+  if (typeof path !== 'string') {
+    throw new TypeError(
+      `Path must be a string, a buffer or a '${FILE_PROTOCOL}//' URL: ${path}`,
+    )
+  }
+
+  if (path.trim() === '') {
+    throw new Error('Path must not be empty')
+  }
 }
 
 module.exports = {

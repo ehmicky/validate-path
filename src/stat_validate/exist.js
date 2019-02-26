@@ -1,7 +1,5 @@
 'use strict'
 
-const assert = require('assert')
-
 // Validate a file exists or not according to `opts.exist`, which can be
 // `undefined` (default), `true` or `false`
 const validateExist = function(path, stat, { exist }) {
@@ -9,8 +7,20 @@ const validateExist = function(path, stat, { exist }) {
     return
   }
 
-  assert(!exist || stat !== undefined, `File does not exist: ${path}`)
-  assert(exist || stat === undefined, `File already exists: ${path}`)
+  checkFile({ exist, stat, path })
+  checkNonFile({ exist, stat, path })
+}
+
+const checkFile = function({ exist, stat, path }) {
+  if (exist && stat === undefined) {
+    throw new Error(`File does not exist: ${path}`)
+  }
+}
+
+const checkNonFile = function({ exist, stat, path }) {
+  if (!exist && stat !== undefined) {
+    throw new Error(`File already exists: ${path}`)
+  }
 }
 
 module.exports = {

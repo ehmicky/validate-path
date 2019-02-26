@@ -1,7 +1,5 @@
 'use strict'
 
-const assert = require('assert')
-
 const { validate } = require('jest-validate')
 
 const { handleSync } = require('./handle')
@@ -31,7 +29,9 @@ const getOptions = function({ opts = {}, type }) {
 }
 
 const assertOpts = function({ opts }) {
-  assert(isObject(opts), `Options argument must be an object: ${opts}`)
+  if (!isObject(opts)) {
+    throw new Error(`Options argument must be an object: ${opts}`)
+  }
 }
 
 // Used for validation + example + defaults

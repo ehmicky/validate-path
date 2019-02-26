@@ -5,7 +5,6 @@ const {
   posix: { normalize: normalizeUnix },
 } = require('path')
 const { platform: osPlatform } = require('process')
-const assert = require('assert')
 
 // Default `opts.platform`
 const getDefaultPlatform = function() {
@@ -19,10 +18,11 @@ const normalizePlatform = function(path, { platform }) {
     return path
   }
 
-  assert(
-    normalize[platform] !== undefined,
-    `'platform' option must be 'windows' or 'unix': ${platform}`,
-  )
+  if (normalize[platform] === undefined) {
+    throw new Error(
+      `'platform' option must be 'windows' or 'unix': ${platform}`,
+    )
+  }
 
   return normalize[platform](path)
 }

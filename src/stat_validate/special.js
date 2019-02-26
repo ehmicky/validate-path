@@ -1,7 +1,5 @@
 'use strict'
 
-const assert = require('assert')
-
 // Validate that the file is not a special file if `opts.allowSpecial` `false`
 // (default).
 const validateSpecial = function(path, stat, { allowSpecial }) {
@@ -16,7 +14,9 @@ const validateSpecial = function(path, stat, { allowSpecial }) {
 }
 
 const validateSpecialType = function({ func, name, stat, path }) {
-  assert(!stat[func](), `Path must not be a ${name}: ${path}`)
+  if (stat[func]()) {
+    throw new Error(`Path must not be a ${name}: ${path}`)
+  }
 }
 
 const SPECIAL_TYPES = [
