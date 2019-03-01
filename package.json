@@ -1,12 +1,12 @@
 {
   "name": "validate-path",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "files": [
-    "dist"
+    "dist/src"
   ],
   "bin": {
-    "validate-path": "dist/bin/index.js"
+    "validate-path": "dist/src/bin/index.js"
   },
   "scripts": {
     "test": "gulp test"
