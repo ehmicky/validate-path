@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "files": [
-    "bin",
-    "dist",
-    "!*~"
+    "dist"
   ],
   "bin": {
-    "validate-path": "bin/validate_path.js"
+    "validate-path": "dist/bin/index.js"
   },
   "scripts": {
     "test": "gulp test"
