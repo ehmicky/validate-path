@@ -3,7 +3,7 @@
 
 const { exit } = require('process')
 
-const validatePath = require('../main')
+const validatePath = require('..')
 
 const { defineCli } = require('./top')
 const { parseConfig } = require('./parse')
