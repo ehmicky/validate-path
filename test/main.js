@@ -2,7 +2,7 @@
 
 const test = require('ava')
 
-const validatePath = require('..')
+const validatePath = require('../src')
 
 test('Dummy test', t => {
   t.is(typeof validatePath, 'function')
