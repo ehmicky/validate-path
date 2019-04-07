@@ -1,7 +1,7 @@
 import { pStat } from './utils.js'
 
 // Retrieve file information
-const getStat = async function(path) {
+export const getStat = async function(path) {
   // Other errors should not happen, i.e. signals a bug in this library (it
   // should handle those error types too).
   try {
@@ -19,8 +19,4 @@ const eGetStat = function({ error, error: { type } }) {
   }
 
   throw error
-}
-
-module.exports = {
-  getStat,
 }

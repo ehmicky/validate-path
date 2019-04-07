@@ -5,7 +5,7 @@ import { validateStatFilter } from './stat_filter.js'
 
 // Validate file path.
 // Use `stat` information, i.e. from the actual file.
-const statValidate = function(path, stat, opts) {
+export const statValidate = function(path, stat, opts) {
   STAT_VALIDATORS.forEach(validator => validator(path, stat, opts))
 }
 
@@ -15,7 +15,3 @@ const STAT_VALIDATORS = [
   validateSpecial,
   validateStatFilter,
 ]
-
-module.exports = {
-  statValidate,
-}

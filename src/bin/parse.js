@@ -1,6 +1,6 @@
 import { omitBy } from '../utils.js'
 
-const parseConfig = function({ yargs }) {
+export const parseConfig = function({ yargs }) {
   // eslint-disable-next-line id-length
   const { _: paths, ...config } = yargs.parse()
 
@@ -20,7 +20,3 @@ const isInternalKey = function(key) {
 }
 
 const INTERNAL_KEYS = ['help', 'version', '_', '$0']
-
-module.exports = {
-  parseConfig,
-}

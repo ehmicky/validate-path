@@ -1,6 +1,6 @@
 import { relative } from 'path'
 
-const validateInside = function(path, { inside, base }) {
+export const validateInside = function(path, { inside, base }) {
   if (inside === undefined) {
     return
   }
@@ -18,8 +18,4 @@ const validateInside = function(path, { inside, base }) {
 const INSIDE = {
   true: 'inside',
   false: 'outside',
-}
-
-module.exports = {
-  validateInside,
 }

@@ -1,5 +1,5 @@
 // Like lodash _.omitBy()
-const omitBy = function(object, condition) {
+export const omitBy = function(object, condition) {
   const pairs = Object.entries(object)
     .filter(([key, value]) => !condition(key, value))
     .map(([key, value]) => ({ [key]: value }))
@@ -7,7 +7,7 @@ const omitBy = function(object, condition) {
 }
 
 // Like lodash _.mapValues()
-const mapValues = function(object, mapper) {
+export const mapValues = function(object, mapper) {
   const pairs = Object.entries(object).map(([key, value]) => ({
     [key]: mapper(value, key, object),
   }))
@@ -15,7 +15,7 @@ const mapValues = function(object, mapper) {
 }
 
 // Same with `mapper` being an async function
-const asyncMapValues = async function(object, mapper) {
+export const asyncMapValues = async function(object, mapper) {
   const pairs = Object.entries(object).map(async ([key, value]) => ({
     [key]: await mapper(value, key, object),
   }))
@@ -23,13 +23,6 @@ const asyncMapValues = async function(object, mapper) {
   return Object.assign({}, ...pairsA)
 }
 
-const isObject = function(value) {
+export const isObject = function(value) {
   return typeof value === 'object' && value !== null
-}
-
-module.exports = {
-  omitBy,
-  mapValues,
-  asyncMapValues,
-  isObject,
 }

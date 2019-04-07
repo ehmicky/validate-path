@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-const defineCli = function() {
+export const defineCli = function() {
   return yargs
     .options(CONFIG)
     .usage(USAGE)
@@ -86,7 +86,3 @@ const USAGE = `$0 [OPTS] PATH
 File path validation and normalization.`
 
 const MAIN_EXAMPLE = '$0'
-
-module.exports = {
-  defineCli,
-}

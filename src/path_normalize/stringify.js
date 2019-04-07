@@ -5,7 +5,7 @@ import {
 import { isFileUrl, FILE_PROTOCOL } from './url.js'
 
 // Normalize path to string. Can be buffer or `file://` URL.
-const stringifyPath = function(path) {
+export const stringifyPath = function(path) {
   if (isBuffer(path)) {
     return path.toString()
   }
@@ -29,8 +29,4 @@ const validatePath = function({ path }) {
   if (path.trim() === '') {
     throw new Error('Path must not be empty')
   }
-}
-
-module.exports = {
-  stringifyPath,
 }

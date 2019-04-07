@@ -1,6 +1,6 @@
 // Validate that the file is not a special file if `opts.allowSpecial` `false`
 // (default).
-const validateSpecial = function(path, stat, { allowSpecial }) {
+export const validateSpecial = function(path, stat, { allowSpecial }) {
   // If the file does not exist, we skip the check
   if (stat === undefined || allowSpecial) {
     return
@@ -23,7 +23,3 @@ const SPECIAL_TYPES = [
   { func: 'isFIFO', name: 'FIFO' },
   { func: 'isSocket', name: 'socket' },
 ]
-
-module.exports = {
-  validateSpecial,
-}

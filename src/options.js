@@ -12,7 +12,7 @@ import { omitBy, isObject, mapValues } from './utils.js'
 // Validate options and assign default options
 // `validatePath.sync()` can only use sync options.
 // `validatePath()` can use sync or async options.
-const getOptions = function({ opts = {}, type }) {
+export const getOptions = function({ opts = {}, type }) {
   assertOpts({ opts })
 
   const optsA = normalizeFilters({ opts })
@@ -26,7 +26,7 @@ const getOptions = function({ opts = {}, type }) {
   return optsD
 }
 
-const assertOpts = function({ opts }) {
+export const assertOpts = function({ opts }) {
   if (!isObject(opts)) {
     throw new Error(`Options argument must be an object: ${opts}`)
   }
@@ -97,8 +97,3 @@ const handleOpt = function({ opts, optOpts, name }) {
 }
 
 const OPTS_OPTS = { base: {}, defaultValue: {} }
-
-module.exports = {
-  getOptions,
-  assertOpts,
-}

@@ -6,7 +6,7 @@ import {
 import { validateFilterFunc, validateFilterRegExp } from '../utils.js'
 
 // Normalize string `opts.*Filter` to RegExps
-const normalizeFilters = function({ opts }) {
+export const normalizeFilters = function({ opts }) {
   const filterOpts = FILTER_OPTS.map(name => normalizeFilter({ name, opts }))
   const filterOptsA = Object.assign({}, ...filterOpts)
   return { ...opts, ...filterOptsA }
@@ -33,7 +33,7 @@ const normalizeRegExpString = function({ filterOpt, name }) {
 }
 
 // `opts.*Filter` options validation
-const isFilterOption = function(option, validOption) {
+export const isFilterOption = function(option, validOption) {
   return validOption === EXAMPLE_FILTER && isFilter(option)
 }
 
@@ -41,13 +41,13 @@ const isFilter = function(filter) {
   return filter instanceof RegExp || typeof filter === 'function'
 }
 
-const EXAMPLE_FILTER = '[a-z]'
+export const EXAMPLE_FILTER = '[a-z]'
 
 // Validate a filename or path against `opts.filenameFilter|pathFilter`
 // They can either:
 //   - a RegExp
 //   - a function returning `true`, `false` or a error message string
-const validateFilters = function(path, opts) {
+export const validateFilters = function(path, opts) {
   FILTER_OPTS.forEach(name => validateFilter(path, name, opts))
 }
 
@@ -73,10 +73,3 @@ const getFilterValue = {
 
 // All available filter options
 const FILTER_OPTS = Object.keys(getFilterValue)
-
-module.exports = {
-  isFilterOption,
-  normalizeFilters,
-  EXAMPLE_FILTER,
-  validateFilters,
-}

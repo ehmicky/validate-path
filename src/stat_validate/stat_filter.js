@@ -1,7 +1,7 @@
 import { validateFilterFunc } from '../utils.js'
 
 // Validate a file `stat` according to `opts.statFilter` function
-const validateStatFilter = function(path, stat, { statFilter }) {
+export const validateStatFilter = function(path, stat, { statFilter }) {
   if (stat === undefined || statFilter === undefined) {
     return
   }
@@ -12,8 +12,4 @@ const validateStatFilter = function(path, stat, { statFilter }) {
     name: 'statFilter',
     path,
   })
-}
-
-module.exports = {
-  validateStatFilter,
 }
