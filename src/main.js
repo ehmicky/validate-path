@@ -94,4 +94,7 @@ const validateStringAsync = async function(path, opts) {
   return pathA
 }
 
+// We do not use `export default` because Babel transpiles it in a way that
+// requires CommonJS users to `require(...).default` instead of `require(...)`.
+// eslint-disable-next-line import/no-commonjs
 module.exports = validatePath
