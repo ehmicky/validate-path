@@ -1,8 +1,8 @@
-import {
-  win32: { normalize: normalizeWindows },
-  posix: { normalize: normalizeUnix },
-} from 'path'
-import { platform: osPlatform } from 'process'
+import { win32 as winPath, posix as posixPath } from 'path'
+import { platform as osPlatform } from 'process'
+
+const { normalize: normalizeWindows } = winPath
+const { normalize: normalizeUnix } = posixPath
 
 // Default `opts.platform`
 export const getDefaultPlatform = function() {

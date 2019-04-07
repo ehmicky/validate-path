@@ -1,6 +1,6 @@
 // eslint-disable-next-line filenames/match-exported
 import { getOptions, assertOpts } from './options.js'
-import { isObject, mapValues, asyncMapValues } from './utils.js'
+import { isObject, mapValues, asyncMapValues } from './utils/functional.js'
 import { handleSync, handleAsync } from './handle.js'
 
 // Validate and normalize a path.

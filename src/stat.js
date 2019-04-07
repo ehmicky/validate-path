@@ -1,4 +1,4 @@
-import { pStat } from './utils.js'
+import { pStat } from './utils/fs.js'
 
 // Retrieve file information
 export const getStat = async function(path) {

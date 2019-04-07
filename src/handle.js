@@ -1,8 +1,9 @@
-import { pathNormalize, addDefault } from './path_normalize.js'
-import { pathValidate } from './path_validate.js'
+import { pathNormalize } from './path_normalize/main.js'
+import { addDefault } from './path_normalize/default.js'
+import { pathValidate } from './path_validate/main.js'
 import { getStat } from './stat.js'
-import { statValidate } from './stat_validate.js'
-import { statNormalize } from './stat_normalize.js'
+import { statValidate } from './stat_validate/main.js'
+import { statNormalize } from './stat_normalize/main.js'
 
 // Validation/normalization that does not use `stat`
 export const handleSync = function(path, opts) {

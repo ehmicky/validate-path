@@ -1,8 +1,8 @@
-import {
-  Buffer: { isBuffer },
-} from 'buffer'
+import { Buffer } from 'buffer'
 
 import { isFileUrl, FILE_PROTOCOL } from './url.js'
+
+const { isBuffer } = Buffer
 
 // Normalize path to string. Can be buffer or `file://` URL.
 export const stringifyPath = function(path) {

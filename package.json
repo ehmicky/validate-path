@@ -1,13 +1,13 @@
 {
   "name": "validate-path",
   "version": "0.0.1",
-  "main": "build/src/index.js",
+  "main": "build/src/main.js",
   "files": [
     "build/src",
     "!~"
   ],
   "bin": {
-    "validate-path": "build/src/bin/index.js"
+    "validate-path": "build/src/bin/main.js"
   },
   "scripts": {
     "test": "gulp test"

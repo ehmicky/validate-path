@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { exit } from 'process'
 
-import validatePath from '..'
+import validatePath from '../main.js'
 
 import { defineCli } from './top.js'
 import { parseConfig } from './parse.js'
