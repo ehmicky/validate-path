@@ -1,6 +1,4 @@
 // eslint-disable-next-line filenames/match-exported
-'use strict'
-
 const { getOptions, assertOpts } = require('./options')
 const { isObject, mapValues, asyncMapValues } = require('./utils')
 const { handleSync, handleAsync } = require('./handle')

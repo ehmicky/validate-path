@@ -1,5 +1,3 @@
-'use strict'
-
 // Validate that the file is a directory or not according to `opts.dir`,
 // which defaults to `undefined` (i.e. no validation)
 const validateDir = function(path, stat, { dir }) {

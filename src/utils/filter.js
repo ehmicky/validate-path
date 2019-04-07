@@ -1,5 +1,3 @@
-'use strict'
-
 const validateFilterFunc = function({ filter, value, name, path }) {
   const message = filter(value)
 

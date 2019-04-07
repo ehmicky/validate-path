@@ -1,5 +1,3 @@
-'use strict'
-
 const { validateExist } = require('./exist')
 const { validateDir } = require('./dir')
 const { validateSpecial } = require('./special')

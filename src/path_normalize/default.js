@@ -1,5 +1,3 @@
-'use strict'
-
 // Add `opts.defaultValue`
 const addDefault = function(path, { defaultValue }) {
   if (path === undefined) {

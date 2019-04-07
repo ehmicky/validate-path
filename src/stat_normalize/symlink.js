@@ -1,5 +1,3 @@
-'use strict'
-
 const { pRealpath } = require('../utils')
 
 const followSymlink = async function(path, stat, { followSymlinks }) {

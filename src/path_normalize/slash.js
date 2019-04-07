@@ -1,5 +1,3 @@
-'use strict'
-
 // Strip final slash
 const stripSlash = function(path) {
   if (!path.endsWith('/') || path === '/') {

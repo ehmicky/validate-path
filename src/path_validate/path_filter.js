@@ -1,5 +1,3 @@
-'use strict'
-
 // We make sure Unix paths are passed to filters, even on Windows
 const {
   posix: { basename, normalize },

@@ -1,5 +1,3 @@
-'use strict'
-
 const { relative } = require('path')
 
 const validateInside = function(path, { inside, base }) {

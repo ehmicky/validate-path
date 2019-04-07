@@ -1,5 +1,3 @@
-'use strict'
-
 const { followSymlink } = require('./symlink')
 
 // Normalize file path.

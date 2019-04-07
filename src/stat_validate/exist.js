@@ -1,5 +1,3 @@
-'use strict'
-
 // Validate a file exists or not according to `opts.exist`, which can be
 // `undefined` (default), `true` or `false`
 const validateExist = function(path, stat, { exist }) {

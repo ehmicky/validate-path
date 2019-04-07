@@ -1,5 +1,3 @@
-'use strict'
-
 const { validateInside } = require('./inside')
 const { validateFilters } = require('./path_filter')
 

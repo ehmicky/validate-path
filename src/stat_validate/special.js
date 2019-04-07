@@ -1,5 +1,3 @@
-'use strict'
-
 // Validate that the file is not a special file if `opts.allowSpecial` `false`
 // (default).
 const validateSpecial = function(path, stat, { allowSpecial }) {

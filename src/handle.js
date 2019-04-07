@@ -1,5 +1,3 @@
-'use strict'
-
 const { pathNormalize, addDefault } = require('./path_normalize')
 const { pathValidate } = require('./path_validate')
 const { getStat } = require('./stat')

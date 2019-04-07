@@ -1,5 +1,3 @@
-'use strict'
-
 const { omitBy } = require('../utils')
 
 const parseConfig = function({ yargs }) {

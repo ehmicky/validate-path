@@ -1,5 +1,3 @@
-'use strict'
-
 const {
   win32: { normalize: normalizeWindows },
   posix: { normalize: normalizeUnix },

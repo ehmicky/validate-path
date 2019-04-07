@@ -1,5 +1,3 @@
-'use strict'
-
 const { pStat } = require('./utils')
 
 // Retrieve file information

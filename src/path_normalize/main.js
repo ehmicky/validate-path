@@ -1,5 +1,3 @@
-'use strict'
-
 const { stringifyPath } = require('./stringify')
 const { normalizeFileUrl } = require('./url')
 const { resolveBase } = require('./base')

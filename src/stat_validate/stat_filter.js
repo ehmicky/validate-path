@@ -1,5 +1,3 @@
-'use strict'
-
 const { validateFilterFunc } = require('../utils')
 
 // Validate a file `stat` according to `opts.statFilter` function

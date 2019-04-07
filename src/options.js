@@ -1,5 +1,3 @@
-'use strict'
-
 const { validate } = require('jest-validate')
 
 const { handleSync } = require('./handle')

@@ -1,5 +1,3 @@
-'use strict'
-
 const {
   Buffer: { isBuffer },
 } = require('buffer')
