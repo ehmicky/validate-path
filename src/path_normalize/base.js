@@ -1,5 +1,5 @@
-const { cwd } = require('process')
-const { resolve } = require('path')
+import { cwd } from 'process'
+import { resolve } from 'path'
 
 // Resolve relative paths according to `opts.base`
 const resolveBase = function(path, { base }) {

@@ -1,13 +1,13 @@
-const { validate } = require('jest-validate')
+import { validate } from 'jest-validate'
 
-const { handleSync } = require('./handle')
-const { getDefaultBase, getDefaultPlatform } = require('./path_normalize')
-const {
+import { handleSync } from './handle.js'
+import { getDefaultBase, getDefaultPlatform } from './path_normalize.js'
+import {
   normalizeFilters,
   EXAMPLE_FILTER,
   isFilterOption,
-} = require('./path_validate')
-const { omitBy, isObject, mapValues } = require('./utils')
+} from './path_validate.js'
+import { omitBy, isObject, mapValues } from './utils.js'
 
 // Validate options and assign default options
 // `validatePath.sync()` can only use sync options.

@@ -1,7 +1,7 @@
 // We do not use the global variable to make it work on Node 8 & 9
 // TODO: remove once dropping support for Node 8 & 9
 // eslint-disable-next-line node/prefer-global/url, no-shadow
-const { URL } = require('url')
+import { URL } from 'url'
 
 // Check input is a `file://` URL
 const isFileUrl = function(url) {

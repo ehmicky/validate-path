@@ -1,4 +1,4 @@
-const { omitBy } = require('../utils')
+import { omitBy } from '../utils.js'
 
 const parseConfig = function({ yargs }) {
   // eslint-disable-next-line id-length

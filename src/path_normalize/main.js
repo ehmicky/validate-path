@@ -1,8 +1,8 @@
-const { stringifyPath } = require('./stringify')
-const { normalizeFileUrl } = require('./url')
-const { resolveBase } = require('./base')
-const { normalizePlatform } = require('./platform')
-const { stripSlash } = require('./slash')
+import { stringifyPath } from './stringify.js'
+import { normalizeFileUrl } from './url.js'
+import { resolveBase } from './base.js'
+import { normalizePlatform } from './platform.js'
+import { stripSlash } from './slash.js'
 
 // Normalize file path.
 // Only normalize the path string, i.e. does not check if file exists.

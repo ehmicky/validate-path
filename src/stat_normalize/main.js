@@ -1,4 +1,4 @@
-const { followSymlink } = require('./symlink')
+import { followSymlink } from './symlink.js'
 
 // Normalize file path.
 // Use `stat` information, i.e. from the actual file.

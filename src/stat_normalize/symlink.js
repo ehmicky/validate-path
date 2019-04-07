@@ -1,4 +1,4 @@
-const { pRealpath } = require('../utils')
+import { pRealpath } from '../utils.js'
 
 const followSymlink = async function(path, stat, { followSymlinks }) {
   if (stat === undefined || !followSymlinks) {

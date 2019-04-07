@@ -1,9 +1,9 @@
 // We make sure Unix paths are passed to filters, even on Windows
-const {
+import {
   posix: { basename, normalize },
-} = require('path')
+} from 'path'
 
-const { validateFilterFunc, validateFilterRegExp } = require('../utils')
+import { validateFilterFunc, validateFilterRegExp } from '../utils.js'
 
 // Normalize string `opts.*Filter` to RegExps
 const normalizeFilters = function({ opts }) {

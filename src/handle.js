@@ -1,8 +1,8 @@
-const { pathNormalize, addDefault } = require('./path_normalize')
-const { pathValidate } = require('./path_validate')
-const { getStat } = require('./stat')
-const { statValidate } = require('./stat_validate')
-const { statNormalize } = require('./stat_normalize')
+import { pathNormalize, addDefault } from './path_normalize.js'
+import { pathValidate } from './path_validate.js'
+import { getStat } from './stat.js'
+import { statValidate } from './stat_validate.js'
+import { statNormalize } from './stat_normalize.js'
 
 // Validation/normalization that does not use `stat`
 const handleSync = function(path, opts) {

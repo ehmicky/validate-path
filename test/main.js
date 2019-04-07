@@ -1,6 +1,6 @@
-const test = require('ava')
+import test from 'ava'
 
-const validatePath = require('../src')
+import validatePath from '../src.js'
 
 test('Dummy test', t => {
   t.is(typeof validatePath, 'function')

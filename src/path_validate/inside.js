@@ -1,4 +1,4 @@
-const { relative } = require('path')
+import { relative } from 'path'
 
 const validateInside = function(path, { inside, base }) {
   if (inside === undefined) {

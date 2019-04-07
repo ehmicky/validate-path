@@ -1,7 +1,7 @@
 // eslint-disable-next-line filenames/match-exported
-const { getOptions, assertOpts } = require('./options')
-const { isObject, mapValues, asyncMapValues } = require('./utils')
-const { handleSync, handleAsync } = require('./handle')
+import { getOptions, assertOpts } from './options.js'
+import { isObject, mapValues, asyncMapValues } from './utils.js'
+import { handleSync, handleAsync } from './handle.js'
 
 // Validate and normalize a path.
 // Only checks the path string, i.e. does not check if file exists.

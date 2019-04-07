@@ -1,5 +1,5 @@
 module.exports = {
-  ...require('./functional'),
-  ...require('./filter'),
-  ...require('./fs'),
+  ...require('./functional.js'),
+  ...require('./filter.js'),
+  ...require('./fs.js'),
 }

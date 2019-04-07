@@ -1,4 +1,4 @@
 module.exports = {
-  ...require('./main'),
-  ...require('./path_filter'),
+  ...require('./main.js'),
+  ...require('./path_filter.js'),
 }

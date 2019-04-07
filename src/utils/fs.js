@@ -1,5 +1,5 @@
-const { promisify } = require('util')
-const { stat, realpath } = require('fs')
+import { promisify } from 'util'
+import { stat, realpath } from 'fs'
 
 const pStat = promisify(stat)
 const pRealpath = promisify(realpath)

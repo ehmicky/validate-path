@@ -1,8 +1,8 @@
-const {
+import {
   win32: { normalize: normalizeWindows },
   posix: { normalize: normalizeUnix },
-} = require('path')
-const { platform: osPlatform } = require('process')
+} from 'path'
+import { platform: osPlatform } from 'process'
 
 // Default `opts.platform`
 const getDefaultPlatform = function() {

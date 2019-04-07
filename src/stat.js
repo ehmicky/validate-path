@@ -1,4 +1,4 @@
-const { pStat } = require('./utils')
+import { pStat } from './utils.js'
 
 // Retrieve file information
 const getStat = async function(path) {

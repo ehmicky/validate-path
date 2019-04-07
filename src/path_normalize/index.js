@@ -1,6 +1,6 @@
 module.exports = {
-  ...require('./main'),
-  ...require('./default'),
-  ...require('./base'),
-  ...require('./platform'),
+  ...require('./main.js'),
+  ...require('./default.js'),
+  ...require('./base.js'),
+  ...require('./platform.js'),
 }

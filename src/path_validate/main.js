@@ -1,5 +1,5 @@
-const { validateInside } = require('./inside')
-const { validateFilters } = require('./path_filter')
+import { validateInside } from './inside.js'
+import { validateFilters } from './path_filter.js'
 
 // Validate file path.
 // Only validate the path string, i.e. does not check if file exists.

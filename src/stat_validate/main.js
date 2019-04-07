@@ -1,7 +1,7 @@
-const { validateExist } = require('./exist')
-const { validateDir } = require('./dir')
-const { validateSpecial } = require('./special')
-const { validateStatFilter } = require('./stat_filter')
+import { validateExist } from './exist.js'
+import { validateDir } from './dir.js'
+import { validateSpecial } from './special.js'
+import { validateStatFilter } from './stat_filter.js'
 
 // Validate file path.
 // Use `stat` information, i.e. from the actual file.

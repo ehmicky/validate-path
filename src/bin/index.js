@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-const { exit } = require('process')
+import { exit } from 'process'
 
-const validatePath = require('..')
+import validatePath from '..'
 
-const { defineCli } = require('./top')
-const { parseConfig } = require('./parse')
+import { defineCli } from './top.js'
+import { parseConfig } from './parse.js'
 
 // Parse CLI arguments then run tasks
 const runCli = async function() {

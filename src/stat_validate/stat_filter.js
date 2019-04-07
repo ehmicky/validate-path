@@ -1,4 +1,4 @@
-const { validateFilterFunc } = require('../utils')
+import { validateFilterFunc } from '../utils.js'
 
 // Validate a file `stat` according to `opts.statFilter` function
 const validateStatFilter = function(path, stat, { statFilter }) {
