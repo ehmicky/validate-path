@@ -14,5 +14,5 @@ Work in progress!
 ```bash
 $ npm install validate-path
 ```
-- Logo designed by [@reallifno](https://github.com/reallinfo)
+- Logo designed by [@reallinfo](https://github.com/reallinfo)
 - The logo is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) 
