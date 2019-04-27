@@ -1,4 +1,3 @@
-// eslint-disable-next-line filenames/match-exported
 import { getOptions, assertOpts } from './options.js'
 import { isObject, mapValues, asyncMapValues } from './utils/functional.js'
 import { handleSync, handleAsync } from './handle.js'
@@ -96,5 +95,4 @@ const validateStringAsync = async function(path, opts) {
 
 // We do not use `export default` because Babel transpiles it in a way that
 // requires CommonJS users to `require(...).default` instead of `require(...)`.
-// eslint-disable-next-line import/no-commonjs
 module.exports = validatePath
