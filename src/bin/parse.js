@@ -1,7 +1,6 @@
 import { omitBy } from '../utils/functional.js'
 
 export const parseConfig = function({ yargs }) {
-  // eslint-disable-next-line id-length
   const { _: paths, ...config } = yargs.parse()
 
   if (paths.length === 0) {
