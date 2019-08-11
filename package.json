@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "core-js": "^3.2.1",
-    "jest-validate": "^24.8.0",
+    "jest-validate": "^24.9.0",
     "yargs": "^13.3.0"
   },
   "devDependencies": {
