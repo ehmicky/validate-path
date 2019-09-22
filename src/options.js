@@ -1,4 +1,5 @@
 import { validate } from 'jest-validate'
+import filterObj from 'filter-obj'
 
 import { handleSync } from './handle.js'
 import { getDefaultBase } from './path_normalize/base.js'
@@ -8,7 +9,7 @@ import {
   EXAMPLE_FILTER,
   isFilterOption,
 } from './path_validate/path_filter.js'
-import { omitBy, isObject, mapValues } from './utils/functional.js'
+import { isObject, mapValues } from './utils/functional.js'
 
 // Validate options and assign default options
 // `validatePath.sync()` can only use sync options.
@@ -20,11 +21,15 @@ export const getOptions = function({ opts = {}, type }) {
 
   validate(optsA, { exampleConfig: EXAMPLE_OPTS[type], condition })
 
-  const optsB = omitBy(optsA, value => value === undefined)
+  const optsB = filterObj(optsA, isDefined)
   const optsC = { ...DEFAULT_OPTS[type], ...optsB }
 
   const optsD = handleOpts({ opts: optsC })
   return optsD
+}
+
+const isDefined = function(key, value) {
+  return value !== undefined
 }
 
 export const assertOpts = function({ opts }) {
