@@ -51,7 +51,7 @@
     "core-js": "^3.4.1",
     "filter-obj": "^2.0.1",
     "jest-validate": "^24.9.0",
-    "yargs": "^14.2.0"
+    "yargs": "^15.0.1"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^0.30.55",
