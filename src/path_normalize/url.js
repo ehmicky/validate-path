@@ -1,5 +1,3 @@
-import { URL } from 'url'
-
 // Check input is a `file://` URL
 export const isFileUrl = function(url) {
   return url instanceof URL && url.protocol === FILE_PROTOCOL
