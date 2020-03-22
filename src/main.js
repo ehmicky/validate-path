@@ -6,7 +6,7 @@ import { handleSync, handleAsync } from './handle.js'
 // Only checks the path string, i.e. does not check if file exists.
 // We are not validating file permissions, because Node.js does not allow
 // doing this out-of-the-box on Windows.
-const validatePathSync = function(path, opts = {}) {
+const validatePathSync = function (path, opts = {}) {
   assertOpts({ opts })
 
   if (typeof path === 'string') {
@@ -26,7 +26,7 @@ const validatePathSync = function(path, opts = {}) {
 
 // Validate and normalize a path.
 // Also checks if the file exists, etc.
-const validatePath = function(path, opts = {}) {
+const validatePath = function (path, opts = {}) {
   assertOpts({ opts })
 
   if (typeof path === 'string') {
@@ -47,7 +47,7 @@ const validatePath = function(path, opts = {}) {
 // eslint-disable-next-line fp/no-mutation
 validatePath.sync = validatePathSync
 
-const wrongPath = function({ path }) {
+const wrongPath = function ({ path }) {
   throw new Error(
     `Path argument must be a string, an array or an object: ${path}`,
   )
@@ -59,35 +59,37 @@ const wrongPath = function({ path }) {
 //  - an object where the values are `string` paths.
 //    In that case, the `opts` will be an object where the keys match the paths
 //    keys, and the values are specific options for each path.
-const validateObjectSync = function(paths, opts) {
+const validateObjectSync = function (paths, opts) {
   return mapValues(paths, (path, name) => validateStringSync(path, opts[name]))
 }
 
-const validateObjectAsync = function(paths, opts) {
+const validateObjectAsync = function (paths, opts) {
   return asyncMapValues(paths, (path, name) =>
     validateStringAsync(path, opts[name]),
   )
 }
 
-const validateArraySync = function(paths, opts) {
+const validateArraySync = function (paths, opts) {
   const optsA = getOptions({ opts, type: 'sync' })
-  const pathsA = paths.map(path => handleSync(path, optsA))
+  const pathsA = paths.map((path) => handleSync(path, optsA))
   return pathsA
 }
 
-const validateArrayAsync = async function(paths, opts) {
+const validateArrayAsync = async function (paths, opts) {
   const optsA = getOptions({ opts, type: 'async' })
-  const pathsA = await Promise.all(paths.map(path => handleAsync(path, optsA)))
+  const pathsA = await Promise.all(
+    paths.map((path) => handleAsync(path, optsA)),
+  )
   return pathsA
 }
 
-const validateStringSync = function(path, opts) {
+const validateStringSync = function (path, opts) {
   const optsA = getOptions({ opts, type: 'sync' })
   const pathA = handleSync(path, optsA)
   return pathA
 }
 
-const validateStringAsync = async function(path, opts) {
+const validateStringAsync = async function (path, opts) {
   const optsA = getOptions({ opts, type: 'async' })
   const pathA = await handleAsync(path, optsA)
   return pathA

@@ -1,6 +1,6 @@
 import filterObj from 'filter-obj'
 
-export const parseConfig = function({ yargs }) {
+export const parseConfig = function ({ yargs }) {
   const { _: paths, ...config } = yargs.parse()
 
   if (paths.length === 0) {
@@ -14,7 +14,7 @@ export const parseConfig = function({ yargs }) {
 }
 
 // Remove `yargs`-specific options, shortcuts and dash-cased
-const isUserOpt = function(key, value) {
+const isUserOpt = function (key, value) {
   return (
     value !== undefined &&
     !INTERNAL_KEYS.includes(key) &&

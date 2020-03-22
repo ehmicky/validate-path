@@ -1,6 +1,6 @@
 // Validate that the file is not a special file if `opts.allowSpecial` `false`
 // (default).
-export const validateSpecial = function(path, stat, { allowSpecial }) {
+export const validateSpecial = function (path, stat, { allowSpecial }) {
   // If the file does not exist, we skip the check
   if (stat === undefined || allowSpecial) {
     return
@@ -11,7 +11,7 @@ export const validateSpecial = function(path, stat, { allowSpecial }) {
   )
 }
 
-const validateSpecialType = function({ func, name, stat, path }) {
+const validateSpecialType = function ({ func, name, stat, path }) {
   if (stat[func]()) {
     throw new Error(`Path must not be a ${name}: ${path}`)
   }

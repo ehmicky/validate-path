@@ -14,7 +14,7 @@ import { isObject, mapValues } from './utils/functional.js'
 // Validate options and assign default options
 // `validatePath.sync()` can only use sync options.
 // `validatePath()` can use sync or async options.
-export const getOptions = function({ opts = {}, type }) {
+export const getOptions = function ({ opts = {}, type }) {
   assertOpts({ opts })
 
   const optsA = normalizeFilters({ opts })
@@ -28,11 +28,11 @@ export const getOptions = function({ opts = {}, type }) {
   return optsD
 }
 
-const isDefined = function(key, value) {
+const isDefined = function (key, value) {
   return value !== undefined
 }
 
-export const assertOpts = function({ opts }) {
+export const assertOpts = function ({ opts }) {
   if (!isObject(opts)) {
     throw new Error(`Options argument must be an object: ${opts}`)
   }
@@ -73,7 +73,7 @@ const EXAMPLE_OPTS = { sync: SYNC_EXAMPLE_OPTS, async: ASYNC_EXAMPLE_OPTS }
 // This is the default `condition` from `jest-validate`, but with customize
 // handling for `*Filter` options, because `jest-validate` does not handle
 // polymorphism.
-const condition = function(option, validOption) {
+const condition = function (option, validOption) {
   return (
     option === null ||
     option === undefined ||
@@ -87,14 +87,14 @@ const { toString: getType } = Object.prototype
 // Some options are paths themselves, i.e. need to be recursively validated
 // by this library itself.
 // We use `handleSync()` not `handleAsync()` so it works for sync as well.
-const handleOpts = function({ opts }) {
+const handleOpts = function ({ opts }) {
   const optsOpts = mapValues(OPTS_OPTS, (optOpts, name) =>
     handleOpt({ opts, optOpts, name }),
   )
   return { ...opts, ...optsOpts }
 }
 
-const handleOpt = function({ opts, optOpts, name }) {
+const handleOpt = function ({ opts, optOpts, name }) {
   try {
     return handleSync(opts[name], optOpts)
   } catch (error) {

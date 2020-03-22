@@ -6,7 +6,7 @@ import { statValidate } from './stat_validate/main.js'
 import { statNormalize } from './stat_normalize/main.js'
 
 // Validation/normalization that does not use `stat`
-export const handleSync = function(path, opts) {
+export const handleSync = function (path, opts) {
   const pathA = addDefault(path, opts)
 
   // If path was `undefined` and no `opts.defaultValue` was defined,
@@ -25,7 +25,7 @@ export const handleSync = function(path, opts) {
 }
 
 // Validation/normalization that use `stat`
-export const handleAsync = async function(path, opts) {
+export const handleAsync = async function (path, opts) {
   const pathA = handleSync(path, opts)
 
   if (pathA === undefined) {

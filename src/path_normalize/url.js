@@ -1,10 +1,10 @@
 // Check input is a `file://` URL
-export const isFileUrl = function(url) {
+export const isFileUrl = function (url) {
   return url instanceof URL && url.protocol === FILE_PROTOCOL
 }
 
 // Normalize `file://` string to a path
-export const normalizeFileUrl = function(path) {
+export const normalizeFileUrl = function (path) {
   if (!path.startsWith(FILE_PROTOCOL)) {
     return path
   }

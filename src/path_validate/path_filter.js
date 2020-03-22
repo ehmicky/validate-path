@@ -6,19 +6,19 @@ import { validateFilterFunc, validateFilterRegExp } from '../utils/filter.js'
 const { basename, normalize } = posixPath
 
 // Normalize string `opts.*Filter` to RegExps
-export const normalizeFilters = function({ opts }) {
-  const filterOpts = FILTER_OPTS.map(name => normalizeFilter({ name, opts }))
+export const normalizeFilters = function ({ opts }) {
+  const filterOpts = FILTER_OPTS.map((name) => normalizeFilter({ name, opts }))
   const filterOptsA = Object.assign({}, ...filterOpts)
   return { ...opts, ...filterOptsA }
 }
 
-const normalizeFilter = function({ name, opts }) {
+const normalizeFilter = function ({ name, opts }) {
   const filterOpt = opts[name]
   const filterOptA = normalizeRegExpString({ filterOpt, name })
   return { [name]: filterOptA }
 }
 
-const normalizeRegExpString = function({ filterOpt, name }) {
+const normalizeRegExpString = function ({ filterOpt, name }) {
   if (typeof filterOpt !== 'string') {
     return filterOpt
   }
@@ -33,11 +33,11 @@ const normalizeRegExpString = function({ filterOpt, name }) {
 }
 
 // `opts.*Filter` options validation
-export const isFilterOption = function(option, validOption) {
+export const isFilterOption = function (option, validOption) {
   return validOption === EXAMPLE_FILTER && isFilter(option)
 }
 
-const isFilter = function(filter) {
+const isFilter = function (filter) {
   return filter instanceof RegExp || typeof filter === 'function'
 }
 
@@ -47,11 +47,11 @@ export const EXAMPLE_FILTER = '[a-z]'
 // They can either:
 //   - a RegExp
 //   - a function returning `true`, `false` or a error message string
-export const validateFilters = function(path, opts) {
-  FILTER_OPTS.forEach(name => validateFilter(path, name, opts))
+export const validateFilters = function (path, opts) {
+  FILTER_OPTS.forEach((name) => validateFilter(path, name, opts))
 }
 
-const validateFilter = function(path, name, { [name]: filter }) {
+const validateFilter = function (path, name, { [name]: filter }) {
   if (filter === undefined) {
     return
   }
@@ -67,8 +67,8 @@ const validateFilter = function(path, name, { [name]: filter }) {
 
 // Retrieve the filename of path
 const getFilterValue = {
-  filenameFilter: path => basename(path),
-  pathFilter: path => normalize(path),
+  filenameFilter: (path) => basename(path),
+  pathFilter: (path) => normalize(path),
 }
 
 // All available filter options

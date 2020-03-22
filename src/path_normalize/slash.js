@@ -1,5 +1,5 @@
 // Strip final slash
-export const stripSlash = function(path) {
+export const stripSlash = function (path) {
   if (!path.endsWith('/') || path === '/') {
     return path
   }
