@@ -1,6 +1,6 @@
+import { handleSync, handleAsync } from './handle.js'
 import { getOptions, assertOpts } from './options.js'
 import { isObject, mapValues, asyncMapValues } from './utils/functional.js'
-import { handleSync, handleAsync } from './handle.js'
 
 // Validate and normalize a path.
 // Only checks the path string, i.e. does not check if file exists.

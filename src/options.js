@@ -1,5 +1,5 @@
-import { validate } from 'jest-validate'
 import filterObj from 'filter-obj'
+import { validate } from 'jest-validate'
 
 import { handleSync } from './handle.js'
 import { getDefaultBase } from './path_normalize/base.js'
