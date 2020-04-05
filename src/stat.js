@@ -1,11 +1,11 @@
-import { promises } from 'fs'
+import { promises as fs } from 'fs'
 
 // Retrieve file information
 export const getStat = async function (path) {
   // Other errors should not happen, i.e. signals a bug in this library (it
   // should handle those error types too).
   try {
-    return await promises.stat(path)
+    return await fs.stat(path)
   } catch (error) {
     eGetStat({ error })
   }
