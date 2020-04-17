@@ -4,7 +4,7 @@
   "main": "build/src/main.js",
   "files": [
     "build/src",
-    "!~"
+    "!*~"
   ],
   "bin": {
     "validate-path": "build/src/bin/main.js"
