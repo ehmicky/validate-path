@@ -25,7 +25,7 @@ const normalizeRegExpString = function ({ filterOpt, name }) {
 
   try {
     return new RegExp(filterOpt, 'u')
-  } catch  {
+  } catch {
     throw new Error(
       `Option '${name}' is an invalid regular expression: ${filterOpt}`,
     )
@@ -48,7 +48,9 @@ export const EXAMPLE_FILTER = '[a-z]'
 //   - a RegExp
 //   - a function returning `true`, `false` or a error message string
 export const validateFilters = function (path, opts) {
-  FILTER_OPTS.forEach((name) => validateFilter(path, name, opts))
+  FILTER_OPTS.forEach((name) => {
+    validateFilter(path, name, opts)
+  })
 }
 
 const validateFilter = function (path, name, { [name]: filter }) {

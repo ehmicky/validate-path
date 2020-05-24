@@ -6,9 +6,9 @@ export const validateSpecial = function (path, stat, { allowSpecial }) {
     return
   }
 
-  SPECIAL_TYPES.forEach(({ func, name }) =>
-    validateSpecialType({ func, name, stat, path }),
-  )
+  SPECIAL_TYPES.forEach(({ func, name }) => {
+    validateSpecialType({ func, name, stat, path })
+  })
 }
 
 const validateSpecialType = function ({ func, name, stat, path }) {

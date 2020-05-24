@@ -7,6 +7,7 @@ import { normalizeFileUrl } from './url.js'
 // Normalize file path.
 // Only normalize the path string, i.e. does not check if file exists.
 export const pathNormalize = function (path, opts) {
+  // eslint-disable-next-line unicorn/no-reduce
   return PATH_NORMALIZERS.reduce(
     (pathA, normalizer) => normalizer(pathA, opts),
     path,
