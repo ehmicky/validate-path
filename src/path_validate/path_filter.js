@@ -25,7 +25,7 @@ const normalizeRegExpString = function ({ filterOpt, name }) {
 
   try {
     return new RegExp(filterOpt, 'u')
-  } catch (error) {
+  } catch  {
     throw new Error(
       `Option '${name}' is an invalid regular expression: ${filterOpt}`,
     )
