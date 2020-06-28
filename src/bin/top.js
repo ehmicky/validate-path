@@ -4,7 +4,7 @@ export const defineCli = function () {
   return yargs
     .options(CONFIG)
     .usage(USAGE)
-    .example(MAIN_EXAMPLE, 'Validate and normalize a file path')
+    .example(EXAMPLES)
     .help()
     .version()
     .strict()
@@ -85,4 +85,4 @@ const USAGE = `$0 [OPTS] PATH
 
 File path validation and normalization.`
 
-const MAIN_EXAMPLE = '$0'
+const EXAMPLES = [['$0', 'Validate and normalize a file path']]
