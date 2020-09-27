@@ -52,7 +52,7 @@
     "filter-obj": "^2.0.1",
     "jest-validate": "^26.4.2",
     "read-pkg-up": "^7.0.1",
-    "update-notifier": "^4.1.1",
+    "update-notifier": "^5.0.0",
     "yargs": "^16.0.3"
   },
   "devDependencies": {
