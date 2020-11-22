@@ -50,7 +50,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "filter-obj": "^2.0.1",
-    "jest-validate": "^26.6.1",
+    "jest-validate": "^26.6.2",
     "read-pkg-up": "^7.0.1",
     "update-notifier": "^5.0.0",
     "yargs": "^16.1.0"
