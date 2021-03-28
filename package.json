@@ -48,7 +48,7 @@
     "test": "test"
   },
   "dependencies": {
-    "core-js": "^3.8.1",
+    "core-js": "^3.10.0",
     "filter-obj": "^2.0.1",
     "jest-validate": "^26.6.2",
     "read-pkg-up": "^7.0.1",
