@@ -52,7 +52,7 @@
     "core-js": "^3.10.0",
     "filter-obj": "^2.0.1",
     "jest-validate": "^26.6.2",
-    "read-pkg-up": "^7.0.1",
+    "read-pkg-up": "^8.0.0",
     "update-notifier": "^5.0.1",
     "yargs": "^16.2.0"
   },
