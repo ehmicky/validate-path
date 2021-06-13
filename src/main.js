@@ -6,7 +6,7 @@ import { isObject, mapValues, asyncMapValues } from './utils/functional.js'
 // Only checks the path string, i.e. does not check if file exists.
 // We are not validating file permissions, because Node.js does not allow
 // doing this out-of-the-box on Windows.
-const validatePathSync = function (path, opts = {}) {
+export const validatePathSync = function (path, opts = {}) {
   assertOpts({ opts })
 
   if (typeof path === 'string') {
@@ -26,7 +26,7 @@ const validatePathSync = function (path, opts = {}) {
 
 // Validate and normalize a path.
 // Also checks if the file exists, etc.
-const validatePath = function (path, opts = {}) {
+export const validatePath = function (path, opts = {}) {
   assertOpts({ opts })
 
   if (typeof path === 'string') {
@@ -94,7 +94,3 @@ const validateStringAsync = async function (path, opts) {
   const pathA = await handleAsync(path, optsA)
   return pathA
 }
-
-// We do not use `export default` because Babel transpiles it in a way that
-// requires CommonJS users to `require(...).default` instead of `require(...)`.
-module.exports = validatePath
