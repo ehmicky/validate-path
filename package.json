@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "filter-obj": "^2.0.1",
-    "jest-validate": "^26.6.2",
+    "jest-validate": "^27.0.2",
     "read-pkg-up": "^8.0.0",
     "update-notifier": "^5.0.1",
     "yargs": "^17.0.1"
