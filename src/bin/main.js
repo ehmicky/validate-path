@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 import { readPackageUpAsync } from 'read-pkg-up'
 import UpdateNotifier from 'update-notifier'
 
-import validatePath from '../main.js'
+import { validatePath } from '../main.js'
 
 import { parseConfig } from './parse.js'
 import { defineCli } from './top.js'
