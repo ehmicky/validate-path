@@ -8,12 +8,6 @@
 
 Work in progress!
 
-# Installation
-
-```bash
-$ npm install validate-path
-```
-
 # Logo
 
 The logo is licensed under
