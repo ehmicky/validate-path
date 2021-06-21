@@ -13,11 +13,6 @@
   "scripts": {
     "test": "gulp test"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "gulp -LL check --full"
-    }
-  },
   "description": "File path validation and normalization",
   "keywords": [
     "path",
